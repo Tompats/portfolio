@@ -243,6 +243,30 @@ body[data-reduced-motion='true'] * {
   }
 }
 
+.mobile-nav-overlay {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.mobile-nav-overlay[data-open='true'] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-menu-panel {
+  opacity: 0;
+  transform: translateY(16px) scale(0.98);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.mobile-menu-panel[data-open='true'] {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+}
+
 :root[data-theme='light'] .bg-cosmic-radial {
   background-image:
     radial-gradient(circle at 62% 22%, rgba(255, 255, 255, 0.8) 0%, transparent 45%),

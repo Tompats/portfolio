@@ -52,21 +52,56 @@ const pathname = effectiveBase && rawPath.startsWith(effectiveBase) ? rawPath.sl
       </button>
     </div>
   </div>
+  <div id="mobile-nav-overlay" class="mobile-nav-overlay fixed inset-0 z-40 bg-[var(--bg)]/70 backdrop-blur-sm transition-opacity lg:hidden" data-open="false" aria-hidden="true"></div>
   <div
     id="mobile-menu"
-    class="frosted-panel mt-3 hidden flex-col gap-4 border border-white/10 px-6 py-6 text-sm font-semibold uppercase tracking-[0.35em] text-[var(--muted)] lg:hidden"
+    data-open="false"
+    class="mobile-menu-panel frosted-panel fixed inset-x-4 top-24 z-50 mt-3 flex max-h-[calc(100vh-8rem)] flex-col gap-5 overflow-y-auto border border-white/10 px-6 py-6 text-center text-sm font-semibold uppercase tracking-[0.35em] text-[var(--muted)] lg:hidden"
   >
     {links.map((link) => (
-      <a href={withBase(link.href)} class={`pb-1 ${pathname === link.href ? 'text-[var(--accent)]' : ''}`}>{link.label}</a>
+      <a
+        href={withBase(link.href)}
+        class={`pb-1 text-base tracking-[0.4em] text-[var(--muted)] transition-colors ${pathname === link.href ? 'text-[var(--accent)]' : 'hover:text-[var(--accent)]'}`}
+      >
+        {link.label}
+      </a>
     ))}
+    <div class="mt-2 grid grid-cols-2 gap-3 text-[10px] uppercase tracking-[0.4em] text-[var(--muted)]">
+      <a href={withBase('/contact')} class="rounded-2xl border border-[var(--border)] bg-surface/30 py-3 text-center text-[var(--text)]">Contact</a>
+      <a href={withBase('/projects')} class="rounded-2xl border border-[var(--border)] bg-surface/30 py-3 text-center text-[var(--text)]">Projects</a>
+    </div>
   </div>
   <script type="module" is:inline>
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('mobile-menu');
-    toggle?.addEventListener('click', () => {
-      if (!menu) return;
-      const isHidden = menu.classList.toggle('hidden');
-      toggle.setAttribute('aria-expanded', (!isHidden).toString());
+    const overlay = document.getElementById('mobile-nav-overlay');
+
+    const setMenuState = (open) => {
+      if (!menu || !toggle || !overlay) return;
+      menu.setAttribute('data-open', open ? 'true' : 'false');
+      overlay.setAttribute('data-open', open ? 'true' : 'false');
+      toggle.setAttribute('aria-expanded', open.toString());
+      document.body.classList.toggle('overflow-hidden', open);
+    };
+
+    const isMenuOpen = () => menu?.getAttribute('data-open') === 'true';
+    const closeMenu = () => setMenuState(false);
+    const toggleMenu = () => setMenuState(!isMenuOpen());
+
+    toggle?.addEventListener('click', () => toggleMenu());
+    overlay?.addEventListener('click', () => closeMenu());
+    menu?.querySelectorAll('a').forEach((link) => link.addEventListener('click', () => closeMenu()));
+
+    window.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && isMenuOpen()) {
+        closeMenu();
+      }
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024 && isMenuOpen()) {
+        closeMenu();
+      }
     });
   </script>
 </header>
