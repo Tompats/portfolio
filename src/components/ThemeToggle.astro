@@ -1,0 +1,193 @@
+<button
+  type="button"
+  class="theme-toggle group relative flex items-center gap-2 rounded-2xl border border-[var(--border)] bg-surface/60 px-4 py-2 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--muted)] shadow-brass-ring transition-colors"
+  aria-label="Toggle theme"
+  aria-pressed="false"
+  data-theme-toggle
+>
+  <span class="theme-toggle__icon-wrapper relative flex h-8 w-8 items-center justify-center rounded-xl bg-white/5 text-base text-[var(--text)]">
+    <span class="theme-toggle__icon theme-toggle__icon--sun" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <circle cx="12" cy="12" r="4" />
+        <path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.07 6.07-1.41-1.41M7.34 8.66 5.93 7.24m12.73 0-1.41 1.42m-8.32 8.31-1.41 1.42" />
+      </svg>
+    </span>
+    <span class="theme-toggle__icon theme-toggle__icon--moon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 14.5A9 9 0 0 1 9.5 3 7 7 0 1 0 21 14.5Z"
+        />
+      </svg>
+    </span>
+  </span>
+  <span class="theme-toggle__label text-[var(--text)]">Theme</span>
+</button>
+
+<style>
+  .theme-toggle {
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+  }
+
+  :global(:root[data-theme='light']) .theme-toggle {
+    border-color: rgba(37, 99, 235, 0.35);
+    background: rgba(255, 255, 255, 0.92);
+    color: #0f172a;
+    box-shadow: 0 12px 30px rgba(148, 163, 184, 0.25);
+  }
+
+  :global(:root[data-theme='light']) .theme-toggle__label {
+    color: #0f172a;
+  }
+
+  :global(:root[data-theme='light']) .theme-toggle__icon-wrapper {
+    background: rgba(37, 99, 235, 0.12);
+    color: #1d4ed8;
+  }
+
+  .theme-toggle__icon {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+  }
+
+  .theme-toggle__icon--moon {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  .theme-toggle[data-mode='dark'] .theme-toggle__icon--sun {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .theme-toggle[data-mode='dark'] .theme-toggle__icon--moon {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  .theme-toggle[data-mode='light'] .theme-toggle__icon--sun {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  .theme-toggle[data-mode='light'] .theme-toggle__icon--moon {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .theme-toggle__label {
+    letter-spacing: 0.4em;
+  }
+
+  .theme-toggle:hover,
+  .theme-toggle:focus-visible {
+    border-color: var(--brass);
+    color: var(--brass);
+  }
+</style>
+
+<script type="module" is:inline>
+  const storageKey = 'theme-preference';
+  const root = document.documentElement;
+  const buttons = Array.from(document.querySelectorAll('[data-theme-toggle]'));
+  const prefersLight = typeof window.matchMedia === 'function' ? window.matchMedia('(prefers-color-scheme: light)') : null;
+
+  const sanitizeTheme = (value) => (value === 'light' ? 'light' : value === 'dark' ? 'dark' : null);
+
+  const readStorage = () => {
+    try {
+      return sanitizeTheme(localStorage.getItem(storageKey));
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const writeStorage = (theme) => {
+    try {
+      localStorage.setItem(storageKey, theme);
+    } catch (error) {
+      // ignore storage errors
+    }
+  };
+
+  const getActiveTheme = () => (root.dataset.theme === 'light' ? 'light' : 'dark');
+
+  const resolveInitialTheme = () => readStorage() ?? (prefersLight?.matches ? 'light' : 'dark');
+
+  const syncButtonState = (theme) => {
+    buttons.forEach((button) => {
+      button.dataset.mode = theme;
+      button.setAttribute('aria-pressed', theme === 'dark' ? 'true' : 'false');
+      button.setAttribute('aria-label', theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode');
+    });
+  };
+
+  const createRipple = (event, theme) => {
+    const ripple = document.createElement('span');
+    ripple.className = 'theme-ripple';
+    const maxSize = Math.max(window.innerWidth, window.innerHeight) * 2;
+    ripple.style.width = `${maxSize}px`;
+    ripple.style.height = `${maxSize}px`;
+    const originX = event?.clientX ?? window.innerWidth / 2;
+    const originY = event?.clientY ?? window.innerHeight / 2;
+    ripple.style.left = `${originX - maxSize / 2}px`;
+    ripple.style.top = `${originY - maxSize / 2}px`;
+    const bgColor = getComputedStyle(root).getPropertyValue('--bg').trim() || (theme === 'light' ? '#f5f7ff' : '#050814');
+    ripple.style.setProperty('--ripple-color', bgColor);
+    document.body.appendChild(ripple);
+    ripple.addEventListener('animationend', () => ripple.remove(), { once: true });
+  };
+
+  const applyTheme = (theme, options) => {
+    root.dataset.theme = theme;
+    root.classList.toggle('dark', theme === 'dark');
+    syncButtonState(theme);
+    writeStorage(theme);
+    if (options?.rippleEvent) {
+      createRipple(options.rippleEvent, theme);
+    }
+  };
+
+  const init = () => {
+    const initial = resolveInitialTheme();
+    applyTheme(initial);
+  };
+
+  if (buttons.length) {
+    init();
+    buttons.forEach((button) => {
+      button.addEventListener('click', (event) => {
+        const current = getActiveTheme();
+        const next = current === 'dark' ? 'light' : 'dark';
+        applyTheme(next, { rippleEvent: event });
+      });
+    });
+  }
+
+  const registerSystemListener = () => {
+    if (!prefersLight) return;
+    const handleSystemChange = (event) => {
+      if (readStorage()) return;
+      applyTheme(event.matches ? 'light' : 'dark');
+    };
+    if (typeof prefersLight.addEventListener === 'function') {
+      prefersLight.addEventListener('change', handleSystemChange);
+    } else if (typeof prefersLight.addListener === 'function') {
+      prefersLight.addListener(handleSystemChange);
+    }
+  };
+
+  window.addEventListener('storage', (event) => {
+    if (event.key !== storageKey) return;
+    const value = sanitizeTheme(event.newValue);
+    if (!value) return;
+    applyTheme(value);
+  });
+
+  registerSystemListener();
+</script>
