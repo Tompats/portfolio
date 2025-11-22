@@ -1,5 +1,4 @@
 ---
-import ThemeToggle from './ThemeToggle.astro';
 import { withBase, basePath } from '../utils/url';
 
 const links = [
@@ -39,7 +38,6 @@ const pathname = effectiveBase && rawPath.startsWith(effectiveBase) ? rawPath.sl
           ></span>
         </a>
       ))}
-      <ThemeToggle />
     </nav>
     <button class="relative z-10 lg:hidden" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" type="button">
       <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-[var(--border)] bg-surface/20 text-[var(--text)]">
@@ -57,9 +55,6 @@ const pathname = effectiveBase && rawPath.startsWith(effectiveBase) ? rawPath.sl
     {links.map((link) => (
       <a href={withBase(link.href)} class={`pb-1 ${pathname === link.href ? 'text-[var(--accent)]' : ''}`}>{link.label}</a>
     ))}
-    <div class="pt-3">
-      <ThemeToggle />
-    </div>
   </div>
   <script type="module" is:inline>
     const toggle = document.getElementById('nav-toggle');

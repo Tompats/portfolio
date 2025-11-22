@@ -17,7 +17,7 @@ const metaDescription =
   'Full-Stack Developer blending Star Wars geekery with alpine calm. Building modern web/mobile products, ML-powered tools, and mentoring from the slopes.';
 ---
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -36,14 +36,6 @@ const metaDescription =
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <script is:inline>
-      const getPreferredTheme = () => {
-        const stored = localStorage.getItem('tp-theme');
-        if (stored) return stored;
-        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      };
-      document.documentElement.dataset.theme = getPreferredTheme();
-    </script>
   </head>
   <body class={`font-sans bg-[var(--bg)] text-[var(--text)] antialiased`}>
     <div class="relative flex min-h-screen flex-col overflow-hidden">
