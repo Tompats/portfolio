@@ -7,72 +7,75 @@ import SectionHeader from '../components/SectionHeader.astro';
     <div>
       <SectionHeader title="Let’s Build (or Ride)" subtitle="Contact" />
       <p class="text-base text-[var(--muted)]" data-animate>
-        Need a Jedi-minded full-stack dev, a ski instructor who understands flow states, or someone to explore ML ideas
-        with? Drop a note—this form is in demo mode, but I’ll reply fast when you reach me for real.
+        Need a Treasure Planet-minded full-stack dev, a ski instructor who speaks in flow states, or someone to battle
+        Sith-grade bugs with a grin? Drop a note—this form is demo mode, yet my real inbox is always open.
       </p>
       <form id="contact-form" class="mt-10 space-y-4" novalidate>
-        <label class="block" data-animate>
-          <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Name</span>
-          <input
-            type="text"
-            name="name"
-            class="mt-2 w-full rounded-2xl border bg-transparent px-4 py-3 outline-none focus:border-[var(--accent)]"
-            placeholder="Padawan or Partner"
-            required
-          />
-        </label>
-        <label class="block" data-animate>
-          <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Email</span>
-          <input
-            type="email"
-            name="email"
-            class="mt-2 w-full rounded-2xl border bg-transparent px-4 py-3 outline-none focus:border-[var(--accent)]"
-            placeholder="you@rebellion.dev"
-            required
-          />
-        </label>
-        <label class="block" data-animate>
-          <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Message</span>
-          <textarea
-            name="message"
-            rows="5"
-            class="mt-2 w-full rounded-2xl border bg-transparent px-4 py-3 outline-none focus:border-[var(--accent)]"
-            placeholder="Let’s plan our next release or alpine mission."
-            required
-          ></textarea>
-        </label>
-        <button type="submit" class="btn-primary">Send Message</button>
-        <p id="form-status" class="text-sm text-[var(--muted)]"></p>
+        <div class="frosted-panel space-y-4 border border-white/10 p-6">
+          <label class="block" data-animate>
+            <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Name</span>
+            <input
+              type="text"
+              name="name"
+              class="mt-2 w-full rounded-2xl border border-white/15 bg-surface/10 px-4 py-3 text-[var(--text)] outline-none transition focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/40"
+              placeholder="Padawan or Partner"
+              required
+            />
+          </label>
+          <label class="block" data-animate>
+            <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Email</span>
+            <input
+              type="email"
+              name="email"
+              class="mt-2 w-full rounded-2xl border border-white/15 bg-surface/10 px-4 py-3 text-[var(--text)] outline-none transition focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/40"
+              placeholder="you@rebellion.dev"
+              required
+            />
+          </label>
+          <label class="block" data-animate>
+            <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Message</span>
+            <textarea
+              name="message"
+              rows="5"
+              class="mt-2 w-full rounded-2xl border border-white/15 bg-surface/10 px-4 py-3 text-[var(--text)] outline-none transition focus:border-[var(--accent)] focus:ring-2 focus:ring-[var(--accent)]/40"
+              placeholder="Let’s plan our next release or alpine mission."
+              required
+            ></textarea>
+          </label>
+          <button type="submit" class="btn-primary">Send Message</button>
+          <p id="form-status" class="text-sm text-[var(--muted)]"></p>
+        </div>
       </form>
     </div>
     <div class="space-y-6">
       <SectionHeader title="Signal Boost" subtitle="Social" />
       <div class="grid gap-6" data-animate>
-        <a class="frosted-panel hover-card flex items-center justify-between border p-6" href="https://github.com/tompats" target="_blank" rel="noreferrer">
+        <a class="frosted-panel hover-card flex items-center justify-between border border-white/10 p-6" href="https://github.com/tompats" target="_blank" rel="noreferrer">
           <div>
             <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">GitHub</p>
             <p class="text-xl font-semibold text-[var(--text)]">/tompats</p>
           </div>
-          <span class="text-aurora">↗</span>
+          <span class="text-[var(--accent)]">↗</span>
         </a>
-        <a class="frosted-panel hover-card flex items-center justify-between border p-6" href="https://www.linkedin.com/in/thomas-patsanis/" target="_blank" rel="noreferrer">
+        <a class="frosted-panel hover-card flex items-center justify-between border border-white/10 p-6" href="https://www.linkedin.com/in/thomas-patsanis/" target="_blank" rel="noreferrer">
           <div>
             <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">LinkedIn</p>
             <p class="text-xl font-semibold text-[var(--text)]">@thomas-patsanis</p>
           </div>
-          <span class="text-aurora">↗</span>
+          <span class="text-[var(--accent)]">↗</span>
         </a>
-        <a class="frosted-panel hover-card flex items-center justify-between border p-6" href="mailto:hello@tompats.dev">
+        <a class="frosted-panel hover-card flex items-center justify-between border border-white/10 p-6" href="mailto:hello@tompats.dev">
           <div>
             <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Email</p>
             <p class="text-xl font-semibold text-[var(--text)]">hello@tompats.dev</p>
           </div>
-          <span class="text-aurora">↗</span>
+          <span class="text-[var(--accent)]">↗</span>
         </a>
       </div>
-      <div class="rounded-3xl border border-dashed border-[var(--border)] p-6" data-animate>
+      <div class="rounded-3xl border border-dashed border-white/15 p-6" data-animate>
         <p class="text-sm text-[var(--muted)]">
-          Bonus: I frequently mentor devs while on ski breaks. Ask about my remote office hours from the chairlift.
+          Bonus: I often mentor devs from gondola rides or alpine cafes. Ask about the chairlift office hours—it keeps
+          the ideas fresh.
         </p>
       </div>
     </div>
@@ -89,11 +92,11 @@ import SectionHeader from '../components/SectionHeader.astro';
       const message = String(data.get('message') ?? '').trim();
       if (!name || !email || !message) {
         statusText && (statusText.textContent = 'Please complete all fields before sending.');
-        statusText?.classList.remove('text-aurora');
+        statusText?.classList.remove('text-etherium');
         return;
       }
       statusText && (statusText.textContent = 'Message sent (demo mode) — see you on the next sprint!');
-      statusText?.classList.add('text-aurora');
+      statusText?.classList.add('text-etherium');
       form.reset();
     });
   </script>

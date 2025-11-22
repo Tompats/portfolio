@@ -8,79 +8,85 @@ import { withBase } from '../utils/url';
 
 const featuredProjects = projects.filter((project) => project.featured).slice(0, 4);
 ---
-<BaseLayout title="Home" description="Thomas Patsanis is a Full-Stack Developer blending Star Wars geekery with alpine calm to build ambitious products.">
-  <section class="mx-auto flex flex-col items-center gap-12 lg:flex-row" data-animate>
-    <div class="flex-1">
-      <p class="text-xs uppercase tracking-[0.5em] text-[var(--muted)]">Hi there</p>
+<BaseLayout title="Home" description="Thomas Patsanis is a Full-Stack Developer uniting Treasure Planet wonder, alpine calm, and Star Wars grit to build ambitious products.">
+  <section class="mx-auto grid gap-12 lg:grid-cols-[1.05fr,0.95fr]">
+    <div class="relative" data-animate>
+      <div class="pointer-events-none absolute -right-6 -top-10 hidden h-40 w-40 text-etherium/50 sm:block" aria-hidden="true">
+        <svg viewBox="0 0 200 200" class="h-full w-full animate-slow-spin motion-reduce:animate-none">
+          <circle cx="100" cy="100" r="70" stroke="currentColor" stroke-width="0.8" fill="none" opacity="0.35" />
+          <path d="M100 30 L115 100 L100 115 L85 100 Z" stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.45" />
+          <circle cx="100" cy="100" r="4" fill="currentColor" />
+          <circle cx="150" cy="80" r="2" fill="currentColor" opacity="0.6" />
+          <circle cx="60" cy="120" r="2.5" fill="currentColor" opacity="0.4" />
+        </svg>
+      </div>
+      <p class="text-xs uppercase tracking-[0.55em] text-[var(--muted)]">Treasure Planet • Alpine Night</p>
       <h1 class="mt-4 text-4xl font-semibold leading-tight text-[var(--text)] sm:text-5xl lg:text-6xl">
-        Hi, I’m <span class="text-transparent bg-gradient-to-r from-aurora to-glacier bg-clip-text">Thomas Patsanis</span>
+        Mapping cosmic products while chasing alpine nights
       </h1>
-      <p class="mt-4 text-xl text-[var(--muted)]">
-        Full-Stack Developer — Always Learning, Always Building.
+      <p class="mt-5 text-lg text-[var(--muted)]">
+        I’m Thomas Patsanis—full-stack explorer, ski instructor, and Star Wars kid forever. I mix Treasure Planet awe
+        with mountain calm to guide teams through unknown galaxies of web, mobile, and data work.
       </p>
-      <p class="mt-6 text-base text-[var(--muted)]">
-        I traded my Jedi dreams for clean architectures, but I still keep a lightsaber near my keyboard. Whether
-        I’m taming bugs worthy of Sith Lords or carving first lines on a silent alpine morning, I chase that same
-        flow state.
+      <p class="mt-4 text-base text-[var(--muted)]">
+        When I’m not shipping resilient systems, I’m carving dawn patrol lines and debugging with a lightsaber within
+        reach. Exploring new worlds is the throughline whether the terrain is snow or TypeScript.
       </p>
-      <div class="mt-8 flex flex-wrap gap-4">
+      <div class="mt-7 flex flex-wrap gap-4">
         <a class="btn-primary" href={withBase('/contact')}>Hire Me</a>
         <a class="btn-secondary" href={withBase('/projects')}>View Projects</a>
       </div>
-      <div class="mt-8 flex items-center gap-6 text-sm text-[var(--muted)]">
-        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-summit"></span> Remote / Ski Instructor</span>
-        <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-aurora"></span> Jedi ethos, mountain calm</span>
+      <div class="mt-10 grid gap-4 sm:grid-cols-2">
+        <div class="rounded-2xl border border-white/10 bg-surface/10 p-4">
+          <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Ski days logged</p>
+          <p class="mt-2 text-3xl font-semibold text-[var(--text)]">45+</p>
+          <p class="text-sm text-[var(--muted)]">Flow-state lessons this season.</p>
+        </div>
+        <div class="rounded-2xl border border-white/10 bg-surface/10 p-4">
+          <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Recent mission</p>
+          <p class="mt-2 text-3xl font-semibold text-[var(--text)]">LifePulse</p>
+          <p class="text-sm text-[var(--muted)]">Guiding health tech from prototype to launch.</p>
+        </div>
       </div>
     </div>
-    <div class="relative flex-1">
-      <div class="pointer-events-none absolute inset-0 -z-10">
-        <div class="absolute inset-x-0 top-4 flex justify-center">
-          <div class="h-64 w-full max-w-md rounded-[3rem] bg-gradient-to-b from-aurora/40 to-transparent blur-3xl"></div>
+    <div class="relative" data-animate data-delay="120">
+      <div class="pointer-events-none absolute inset-0 -z-10 rounded-[40px] bg-gradient-to-br from-etherium/15 via-transparent to-nebula/20 blur-3xl"></div>
+      <div class="frosted-panel relative overflow-hidden border border-white/10 px-6 py-8">
+        <div class="absolute inset-0 opacity-60" aria-hidden="true">
+          <div class="absolute -left-20 top-0 h-40 w-40 rounded-full bg-etherium/30 blur-[120px]"></div>
+          <div class="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-nebula/30 blur-3xl"></div>
         </div>
-        <div class="mountain-mask absolute inset-x-6 bottom-0 h-72 bg-gradient-to-t from-midnight/80 via-dusk/70 to-transparent">
-          <div class="alpine-ridge absolute inset-x-0 bottom-0 h-1/2"></div>
-        </div>
-        <svg class="absolute -bottom-6 left-0 w-full animate-float" viewBox="0 0 600 200" fill="none">
-          <path
-            d="M0 120L80 80L140 140L220 60L300 150L380 90L450 150L520 110L600 140V200H0V120Z"
-            fill="url(#gradient-mountain)"
-            opacity="0.25"
-          />
-          <defs>
-            <linearGradient id="gradient-mountain" x1="0" y1="0" x2="0" y2="1">
-              <stop stop-color="#9fe3ff" stop-opacity="0.6" />
-              <stop offset="1" stop-color="#050718" stop-opacity="0.1" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </div>
-      <div class="frosted-panel relative overflow-hidden border px-6 py-8">
-        <div class="absolute inset-0 bg-gradient-to-br from-aurora/10 via-midnight/20 to-summit/10"></div>
         <div class="relative z-10">
           <p class="text-xs uppercase tracking-[0.5em] text-[var(--muted)]">Mission Log</p>
-          <p class="mt-2 text-3xl font-semibold text-[var(--text)]">Battling bugs, chasing summits.</p>
+          <p class="mt-2 text-3xl font-semibold text-[var(--text)]">Battling bugs, sketching star charts.</p>
           <p class="mt-4 text-sm text-[var(--muted)]">
-            Currently architecting LifePulse, guiding Code Seed squads, and teaching skiers how to dance with
-            gravity. My lightsaber is always charged.
+            Currently steering LifePulse, mentoring Code Seed squads, and teaching riders how to dance with gravity.
+            Lightsaber charged. Skis waxed.
           </p>
-          <div class="mt-6 rounded-2xl border border-white/10 bg-black/30 p-4 text-sm font-mono">
-            <p class="text-aurora">const mode = ['builder', 'ski instructor']</p>
-            <p>const motto = "Focus. Flow. Repeat.";</p>
-            <p>
-              deploy(&#123; base: '/portfolio', target: 'GitHub Pages' &#125;);
-            </p>
+          <div class="mt-6 rounded-2xl border border-white/10 bg-black/30 p-4 text-sm font-mono tracking-wide text-[var(--muted)]">
+            <p class="text-etherium">const motto = 'Explore • Build • Repeat';</p>
+            <p>const basecamp = 'Ioannina, GR';</p>
+            <p>deploy(&#123; target: 'GitHub Pages', project: 'portfolio' &#125;);</p>
+          </div>
+          <div class="mt-6 grid gap-4 sm:grid-cols-2">
+            <div class="rounded-2xl border border-white/10 bg-surface/10 p-4">
+              <p class="text-[11px] uppercase tracking-[0.5em] text-[var(--muted)]">Remote & slopes</p>
+              <p class="mt-2 text-lg text-[var(--text)]">Split weeks between sprint planning and ski camps.</p>
+            </div>
+            <div class="rounded-2xl border border-white/10 bg-surface/10 p-4">
+              <p class="text-[11px] uppercase tracking-[0.5em] text-[var(--muted)]">Galactic motto</p>
+              <p class="mt-2 text-lg text-[var(--text)]">Bugs tougher than Sith? Bring it.</p>
+            </div>
           </div>
         </div>
-        <div class="absolute -bottom-10 -left-10 h-64 w-64 rounded-full bg-aurora/20 blur-3xl"></div>
-        <div class="absolute -top-12 -right-16 h-56 w-56 rounded-full bg-summit/30 blur-3xl"></div>
       </div>
-      <div class="pointer-events-none absolute inset-x-6 -bottom-10 h-48 rounded-[3rem] bg-gradient-to-t from-midnight/40 to-transparent"></div>
+      <div class="pointer-events-none absolute inset-x-10 -bottom-10 h-32 rounded-[40px] bg-gradient-to-t from-cosmic/80 to-transparent"></div>
     </div>
   </section>
 
   <section class="mt-24" id="tech">
-    <SectionHeader title="Tech That Keeps My Lightsaber Glowing" subtitle="Tech Stack" align="center" />
-    <div class="frosted-panel grid gap-4 border p-6 md:grid-cols-2 lg:grid-cols-3" data-animate>
+    <SectionHeader title="Systems powering my etherium sails" subtitle="Toolkit" align="center" />
+    <div class="frosted-panel grid gap-4 border border-white/10 p-6 md:grid-cols-2 lg:grid-cols-3" data-animate>
       {techStack.map((item) => (
         <TagChip label={item} variant="solid" />
       ))}
@@ -88,7 +94,7 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
   </section>
 
   <section class="mt-24" id="projects">
-    <SectionHeader title="Featured Expeditions" subtitle="Projects" />
+    <SectionHeader title="Featured expeditions" subtitle="Projects" />
     <div class="grid gap-6 md:grid-cols-2">
       {featuredProjects.map((project, index) => (
         <ProjectCard {...project} delay={index * 120} />
@@ -97,13 +103,13 @@ const featuredProjects = projects.filter((project) => project.featured).slice(0,
   </section>
 
   <section class="mt-24" id="cta" data-animate>
-    <div class="frosted-panel grid gap-6 border px-8 py-10 lg:grid-cols-2 lg:items-center">
+    <div class="frosted-panel grid gap-6 border border-white/10 px-8 py-10 lg:grid-cols-2 lg:items-center">
       <div>
-        <p class="text-xs uppercase tracking-[0.5em] text-[var(--muted)]">Let’s team up</p>
-        <h3 class="mt-3 text-3xl font-semibold text-[var(--text)]">Need a playful Jedi dev who loves the alpine?</h3>
+        <p class="text-xs uppercase tracking-[0.5em] text-[var(--muted)]">Set a new course</p>
+        <h3 class="mt-3 text-3xl font-semibold text-[var(--text)]">Need a Treasure Planet mind with alpine discipline?</h3>
         <p class="mt-3 text-base text-[var(--muted)]">
-          I help teams design, build, and ship resilient products—and I can swap stories about tree runs and code
-          freezes along the way.
+          I partner with teams to design and ship resilient products, mentor devs, and keep releases as smooth as a
+          freshly groomed run.
         </p>
       </div>
       <div class="flex flex-wrap gap-4">

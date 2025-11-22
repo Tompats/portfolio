@@ -148,21 +148,21 @@ export const nowFocus = [
   {
     title: 'Crafting cross-platform systems at Code Seed',
     description:
-      'Architecting services that juggle data streams, automation, and delightful UX for clients across Europe.',
+      'Charting Treasure Planet-scale architectures that juggle data streams, automation, and delightful UX for crews across Europe.',
   },
   {
     title: 'Scaling LifePulse',
     description:
-      'Co-leading product, writing code, and piloting new health AI features for our startup.',
+      'Co-leading product, writing code, and piloting new health AI features as if they were etherium sails catching cosmic winds.',
   },
   {
     title: 'Exploring ML & data stories',
     description:
-      'Experimenting with snow safety models, wearable analytics, and curious LLM workflows.',
+      'Experimenting with snow safety models, wearable analytics, and lightsaber-polished LLM workflows to navigate the unknown.',
   },
   {
     title: 'Teaching on the slopes',
     description:
-      'Coaching skiers, reading the mountain, and bringing that flow-state discipline back into software.',
+      'Coaching skiers, reading the mountain, and bringing that alpine flow-state discipline straight back into software missions.',
   },
 ];

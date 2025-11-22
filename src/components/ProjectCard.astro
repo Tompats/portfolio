@@ -10,39 +10,45 @@ interface Props extends Project {
 const { title, description, tags, github, demo, delay = 0, animated = true } = Astro.props;
 ---
 <article
-  class="frosted-panel hover-card flex h-full flex-col border p-6"
+  class="frosted-panel hover-card relative flex h-full flex-col border border-white/5 p-6"
   {...(animated ? { 'data-animate': true, 'data-delay': delay } : {})}
 >
-  <div class="mb-4 flex items-center justify-between text-xs uppercase tracking-[0.4em] text-[var(--muted)]">
-    <span>Featured Build</span>
-    <span class="flex items-center gap-1 text-[var(--accent)]">
-      <svg class="h-2 w-2" viewBox="0 0 10 10" fill="currentColor"><circle cx="5" cy="5" r="5" /></svg>
-      Ready
-    </span>
+  <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[28px]">
+    <div class="absolute -top-16 right-0 h-32 w-32 rounded-full bg-etherium/20 blur-3xl"></div>
+    <div class="absolute -bottom-12 left-6 h-28 w-28 rounded-full bg-nebula/25 blur-3xl"></div>
   </div>
-  <h3 class="text-2xl font-semibold text-[var(--text)]">{title}</h3>
-  <p class="mt-3 flex-1 text-base text-[var(--muted)]">{description}</p>
-  <div class="mt-4 flex flex-wrap gap-2">
-    {tags.map((tag) => (
-      <TagChip label={tag} />
-    ))}
-  </div>
-  <div class="mt-6 flex flex-wrap gap-3 text-sm font-medium">
-    <a
-      class="btn-secondary hover:border-[var(--accent)] hover:text-[var(--accent)]"
-      href={github}
-      target="_blank"
-      rel="noreferrer"
-    >
-      GitHub
-    </a>
-    <a
-      class="btn-primary hover:shadow-glow"
-      href={demo}
-      target="_blank"
-      rel="noreferrer"
-    >
-      Live Demo
-    </a>
+  <div class="relative z-10">
+    <div class="mb-5 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.45em] text-[var(--muted)]">
+      <span>Explorer Log</span>
+      <span class="flex items-center gap-1 text-[var(--brass)]">
+        <svg class="h-2.5 w-2.5" viewBox="0 0 10 10" fill="currentColor" aria-hidden="true"><circle cx="5" cy="5" r="5" /></svg>
+        Ready
+      </span>
+    </div>
+    <h3 class="text-2xl font-semibold text-[var(--text)]">{title}</h3>
+    <p class="mt-4 flex-1 text-base text-[var(--muted)]">{description}</p>
+    <div class="mt-4 flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <TagChip label={tag} />
+      ))}
+    </div>
+    <div class="mt-6 flex flex-wrap gap-3 text-sm font-medium">
+      <a
+        class="btn-secondary"
+        href={github}
+        target="_blank"
+        rel="noreferrer"
+      >
+        GitHub
+      </a>
+      <a
+        class="btn-primary hover:shadow-glow"
+        href={demo}
+        target="_blank"
+        rel="noreferrer"
+      >
+        Live Demo
+      </a>
+    </div>
   </div>
 </article>

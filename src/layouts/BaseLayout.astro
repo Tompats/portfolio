@@ -28,7 +28,7 @@ const metaDescription =
     <meta property="og:type" content="website" />
     <meta property="og:url" content={`https://tompats.github.io/portfolio${Astro.url.pathname}`} />
     <meta property="og:image" content="/og-banner.svg" />
-    <meta name="theme-color" content="#050718" />
+    <meta name="theme-color" content="#0B0F19" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,9 +45,43 @@ const metaDescription =
       document.documentElement.dataset.theme = getPreferredTheme();
     </script>
   </head>
-  <body class={`font-sans bg-[var(--bg)] text-[var(--text)]`}>
+  <body class={`font-sans bg-[var(--bg)] text-[var(--text)] antialiased`}>
     <div class="relative flex min-h-screen flex-col overflow-hidden">
-      <div class="pointer-events-none absolute inset-0 starfield blur-3xl"></div>
+      <div class="pointer-events-none absolute inset-0 overflow-hidden">
+        <div class="absolute inset-0 bg-cosmic-radial" data-parallax data-depth="0.04"></div>
+        <div class="starfield absolute inset-0 opacity-70 mix-blend-screen" data-parallax data-depth="0.06"></div>
+        <div
+          class="absolute -top-48 right-[-10%] h-[42rem] w-[42rem] rounded-full bg-gradient-to-b from-etherium/25 via-transparent to-transparent blur-[180px]"
+          data-parallax
+          data-depth="0.15"
+        ></div>
+        <div
+          class="absolute top-1/3 -left-[15%] h-[36rem] w-[36rem] rounded-full bg-gradient-to-tr from-nebula/30 via-transparent to-transparent blur-[140px]"
+          data-parallax
+          data-depth="0.12"
+        ></div>
+        <div class="absolute inset-x-0 bottom-[-15%] h-[30rem] bg-gradient-to-t from-cosmic via-transparent to-transparent opacity-70"></div>
+        <svg
+          class="absolute bottom-[-5%] left-1/2 h-64 w-[140%] -translate-x-1/2 text-white/5"
+          viewBox="0 0 1200 400"
+          fill="none"
+          aria-hidden="true"
+          data-parallax
+          data-depth="0.05"
+        >
+          <path
+            d="M0 280L80 230L170 270L260 210L360 310L450 230L550 310L650 250L760 320L880 260L1000 300L1120 250L1200 280V400H0V280Z"
+            fill="url(#alpine-gradient)"
+            opacity="0.6"
+          />
+          <defs>
+            <linearGradient id="alpine-gradient" x1="0" y1="0" x2="0" y2="1">
+              <stop stop-color="#3B82F6" stop-opacity="0.05" />
+              <stop offset="1" stop-color="#050814" stop-opacity="0" />
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
       <div class={`relative flex flex-1 flex-col ${className ?? ''}`}>
         <NavBar />
         <main class="flex-1 px-4 pb-20 pt-24 sm:px-10 lg:px-16">
@@ -57,32 +91,59 @@ const metaDescription =
       </div>
     </div>
     <script type="module" is:inline>
-      const initScrollAnimations = () => {
+      const initExperiences = () => {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         document.body.dataset.reducedMotion = prefersReducedMotion ? 'true' : 'false';
-        if (prefersReducedMotion) {
-          document.querySelectorAll('[data-animate]').forEach((node) => node.classList.add('is-visible'));
-          return;
-        }
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                const target = entry.target;
-                const delay = target.dataset.delay ? Number(target.dataset.delay) : 0;
-                setTimeout(() => target.classList.add('is-visible'), delay);
-                observer.unobserve(target);
-              }
+        const animateTargets = () => {
+          if (prefersReducedMotion) {
+            document.querySelectorAll('[data-animate]').forEach((node) => node.classList.add('is-visible'));
+            return;
+          }
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  const target = entry.target;
+                  const delay = target.dataset.delay ? Number(target.dataset.delay) : 0;
+                  setTimeout(() => target.classList.add('is-visible'), delay);
+                  observer.unobserve(target);
+                }
+              });
+            },
+            { threshold: 0.25 }
+          );
+          document.querySelectorAll('[data-animate]').forEach((node) => observer.observe(node));
+        };
+        const parallaxLayers = () => {
+          if (prefersReducedMotion) return;
+          const layers = document.querySelectorAll('[data-parallax]');
+          if (!layers.length) return;
+          let ticking = false;
+          const update = () => {
+            const scrollY = window.scrollY;
+            layers.forEach((layer) => {
+              const depth = Number(layer.getAttribute('data-depth') ?? '0.1');
+              const translate = scrollY * depth * 0.08;
+              layer.style.transform = `translate3d(0, ${translate}px, 0)`;
             });
-          },
-          { threshold: 0.25 }
-        );
-        document.querySelectorAll('[data-animate]').forEach((node) => observer.observe(node));
+            ticking = false;
+          };
+          const handleScroll = () => {
+            if (!ticking) {
+              requestAnimationFrame(update);
+              ticking = true;
+            }
+          };
+          window.addEventListener('scroll', handleScroll, { passive: true });
+          update();
+        };
+        animateTargets();
+        parallaxLayers();
       };
       if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', initScrollAnimations, { once: true });
+        document.addEventListener('DOMContentLoaded', initExperiences, { once: true });
       } else {
-        initScrollAnimations();
+        initExperiences();
       }
     </script>
   </body>

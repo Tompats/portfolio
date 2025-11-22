@@ -1,0 +1,93 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none"
+     xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ====== DEFINITIONS ====== -->
+  <defs>
+    <!-- Brass gradient -->
+    <linearGradient id="brass" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#A97826"/>
+    </linearGradient>
+
+    <!-- Etherium glow filter -->
+    <filter id="etheriumGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix in="blur" type="matrix"
+        values="
+          0 0 0 0 0.25
+          0 0 0 0 0.55
+          0 0 0 0 1
+          0 0 0 0.8 0" result="blueglow"/>
+      <feMerge>
+        <feMergeNode in="blueglow"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Etherium gradient trail -->
+    <linearGradient id="etherium" x1="0" y1="0" x2="512" y2="512">
+      <stop offset="0%" stop-color="#4FC3F7"/>
+      <stop offset="100%" stop-color="#7C3AED"/>
+    </linearGradient>
+
+    <!-- Subtle depth shadow -->
+    <filter id="innerShadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feOffset dx="0" dy="6" />
+      <feGaussianBlur stdDeviation="8" result="offset-blur"/>
+      <feComposite operator="out" in="SourceGraphic" in2="offset-blur" />
+      <feColorMatrix type="matrix" values="
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 0 0
+            0 0 0 .5 0"/>
+      <feBlend in="SourceGraphic" mode="normal"/>
+    </filter>
+  </defs>
+
+  <!-- ====== BACKGROUND ====== -->
+  <rect width="512" height="512" rx="120" fill="#0B0F19"/>
+
+  <!-- ====== OUTER BRASS COMPASS RING ====== -->
+  <circle cx="256" cy="256" r="180"
+          stroke="url(#brass)" stroke-width="18"
+          fill="none" filter="url(#innerShadow)"/>
+
+  <!-- ====== COMPASS ROSE ====== -->
+  <!-- N-S needle -->
+  <path d="M256 105L276 256L256 407L236 256Z"
+        fill="url(#brass)" opacity="0.85"/>
+
+  <!-- E-W needle -->
+  <path d="M407 256L256 276L105 256L256 236Z"
+        fill="url(#brass)" opacity="0.85"/>
+
+  <!-- Inner circle -->
+  <circle cx="256" cy="256" r="75"
+          stroke="url(#brass)" stroke-width="10"
+          fill="#111827"/>
+
+  <!-- Tiny inner ring for depth -->
+  <circle cx="256" cy="256" r="40"
+          stroke="#6B7280" stroke-width="6"
+          fill="#0F1622"/>
+
+  <!-- Center dot -->
+  <circle cx="256" cy="256" r="10" fill="#4FC3F7"/>
+
+  <!-- ====== ETHERIUM TRAIL (Glow Ribbon) ====== -->
+  <path d="
+      M150 330
+      C180 380, 260 410, 330 360
+      C380 320, 380 260, 340 220
+      C300 180, 220 170, 170 210
+      C130 240, 120 290, 150 330Z"
+    stroke="url(#etherium)"
+    stroke-width="14"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    filter="url(#etheriumGlow)"
+    opacity="0.95"
+  />
+
+</svg>

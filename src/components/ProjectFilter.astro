@@ -14,8 +14,9 @@ const filters: Array<'All' | ProjectCategory> = ['All', 'Full-Stack', 'Mobile', 
     {filters.map((filter) => (
       <button
         type="button"
-        class="filter-btn rounded-full border px-6 py-2 text-xs font-semibold uppercase tracking-[0.3em] text-[var(--muted)] transition hover:border-[var(--accent)] hover:text-[var(--accent)]"
+        class="filter-btn rounded-full border border-white/10 bg-surface/10 px-6 py-2 text-[11px] font-semibold uppercase tracking-[0.35em] text-[var(--muted)] transition-all hover:border-[var(--accent)] hover:text-[var(--accent)]"
         data-filter={filter}
+        aria-pressed="false"
       >
         {filter}
       </button>
@@ -50,6 +51,7 @@ const filters: Array<'All' | ProjectCategory> = ['All', 'Full-Stack', 'Mobile', 
   .filter-btn[aria-pressed='true'] {
     border-color: var(--accent);
     color: var(--accent);
+    box-shadow: 0 0 25px rgba(79, 195, 247, 0.25);
   }
 </style>
 <script type="module" lang="ts">
