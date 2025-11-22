@@ -1,0 +1,13 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  align?: 'left' | 'center';
+}
+
+const { title, subtitle, align = 'left' } = Astro.props;
+---
+<div class={`mb-10 ${align === 'center' ? 'text-center' : 'text-left'}`} data-animate>
+  <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">{subtitle}</p>
+  <h2 class="mt-2 text-3xl font-semibold text-[var(--text)] md:text-4xl">{title}</h2>
+</div>

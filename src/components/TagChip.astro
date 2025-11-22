@@ -1,0 +1,15 @@
+---
+interface Props {
+  label: string;
+  variant?: 'solid' | 'ghost';
+}
+
+const { label, variant = 'ghost' } = Astro.props;
+const base =
+  'inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold tracking-wide uppercase transition-colors duration-300';
+const style =
+  variant === 'solid'
+    ? 'bg-gradient-to-r from-aurora to-summit text-midnight shadow-glow'
+    : 'border glass-border text-[var(--muted)] hover:text-[var(--accent)]';
+---
+<span class={`${base} ${style}`}>{label}</span>

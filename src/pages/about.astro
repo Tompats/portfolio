@@ -1,0 +1,156 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import TagChip from '../components/TagChip.astro';
+import { experienceTimeline, education, skillGroups, nowFocus } from '../content/data';
+import { Image } from 'astro:assets';
+import thomasCoding from '../assets/thomas-coding.jpg';
+import thomasSki from '../assets/thomas-ski.jpg';
+---
+<BaseLayout title="About" description="Meet Thomas Patsanis — full-stack developer, ski instructor, and lifelong Star Wars fan.">
+  <section class="grid gap-10 lg:grid-cols-[1fr,0.8fr]">
+    <div class="space-y-6" data-animate>
+      <SectionHeader title="Always Learning, Always Building" subtitle="About" />
+      <p class="text-lg text-[var(--muted)]">
+        When I was young, I was convinced my destiny involved a Jedi robe. Turns out the council never called, so I
+        built my own saga in software. Today I’m a full-stack developer with a Computer Science & Engineering Degree
+        plus an Integrated MSc from the University of Ioannina. I ship mobile and web products, tame distributed
+        systems, and sprinkle machine learning where it unlocks real value.
+      </p>
+      <p class="text-lg text-[var(--muted)]">
+        My happy place is a split between sleek codebases and wide alpine views. I moonlight as a ski instructor,
+        carving lines in fresh snow with the same focus I bring to code reviews. That blend of playfulness, geeky
+        tenacity, and mountain calm keeps my work grounded and my imagination lit.
+      </p>
+      <p class="text-lg text-[var(--muted)]">
+        Whether it’s React Native, Astro, or Python ML pipelines, I love translating fuzzy ideas into resilient,
+        user-friendly realities. Lightsaber close, skis waxed, curiosity on overdrive.
+      </p>
+    </div>
+    <div class="frosted-panel flex flex-col items-center gap-6 border px-8 py-10 text-center" data-animate>
+      <div class="relative flex w-full max-w-sm justify-center">
+        <div class="relative w-full">
+          <div class="absolute inset-0 -z-10 animate-pulse rounded-3xl bg-gradient-to-br from-aurora/30 via-transparent to-summit/40 blur-2xl"></div>
+          <div class="profile-image-stack relative h-[320px] w-full sm:h-[420px]">
+            <Image
+              src={thomasCoding}
+              alt="Thomas Patsanis coding on a laptop"
+              width={640}
+              height={852}
+              class="profile-image-swap profile-image-swap--coding"
+              loading="lazy"
+            />
+            <Image
+              src={thomasSki}
+              alt="Thomas Patsanis skiing in the mountains"
+              width={460}
+              height={345}
+              class="profile-image-swap profile-image-swap--ski"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+      <p class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Ski Instructor • Full-Stack</p>
+      <p class="text-2xl font-semibold text-[var(--text)]">Thomas Patsanis</p>
+      <p class="text-base text-[var(--muted)]">Based wherever snow or ambitious products call.</p>
+      <div class="flex flex-wrap justify-center gap-2">
+        <TagChip label="Astro" />
+        <TagChip label="React Native" />
+        <TagChip label="ML Curious" />
+      </div>
+      <a class="btn-secondary" href="https://www.linkedin.com/in/thomas-patsanis/" target="_blank" rel="noreferrer">LinkedIn</a>
+    </div>
+  </section>
+
+  <section class="mt-20 grid gap-12 lg:grid-cols-[1.1fr,0.9fr]">
+    <div>
+      <SectionHeader title="Experience Timeline" subtitle="Journey" />
+      <ol class="relative border-l border-[var(--border)] pl-6">
+        {experienceTimeline.map((job, index) => (
+          <li class="relative mb-10" data-animate data-delay={index * 80}>
+            <div class="absolute -left-8 top-1 h-4 w-4 rounded-full bg-gradient-to-r from-aurora to-summit"></div>
+            <h3 class="text-xl font-semibold text-[var(--text)]">{job.title} · {job.place}</h3>
+            <p class="text-sm uppercase tracking-[0.3em] text-[var(--muted)]">{job.period} — {job.location}</p>
+          </li>
+        ))}
+      </ol>
+      <div class="mt-8 rounded-3xl border border-dashed border-[var(--border)] p-6" data-animate>
+        <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">Education</p>
+        <p class="mt-2 text-xl font-semibold">{education.title}</p>
+        <p class="text-base text-[var(--muted)]">{education.school}</p>
+      </div>
+    </div>
+    <div>
+      <SectionHeader title="Skills Arsenal" subtitle="Skills" />
+      <div class="space-y-5" data-animate>
+        {skillGroups.map((group) => (
+          <div class="frosted-panel border p-5">
+            <p class="text-xs uppercase tracking-[0.4em] text-[var(--muted)]">{group.title}</p>
+            <div class="mt-3 flex flex-wrap gap-2">
+              {group.skills.map((skill) => (
+                <TagChip label={skill} />
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-20">
+    <SectionHeader title="What I’m Doing Now" subtitle="Now" align="center" />
+    <div class="grid gap-6 md:grid-cols-2">
+      {nowFocus.map((item, index) => (
+        <div class="frosted-panel hover-card border p-6" data-animate data-delay={index * 60}>
+          <h4 class="text-xl font-semibold text-[var(--text)]">{item.title}</h4>
+          <p class="mt-2 text-base text-[var(--muted)]">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style is:global>
+  .profile-image-stack {
+    border-radius: 1.5rem;
+    border: 2px solid rgba(124, 58, 237, 0.4);
+    box-shadow: 0 10px 30px rgba(127, 135, 255, 0.3);
+    overflow: hidden;
+  }
+
+  .profile-image-swap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1.5rem;
+    opacity: 0;
+    animation: profileImageCycle 12s ease-in-out infinite;
+    will-change: opacity;
+  }
+
+  .profile-image-swap--coding {
+    animation-delay: 0s;
+  }
+
+  .profile-image-swap--ski {
+    animation-delay: 6s;
+  }
+
+  @keyframes profileImageCycle {
+    0% {
+      opacity: 1;
+    }
+    40% {
+      opacity: 1;
+    }
+    55% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+</style>

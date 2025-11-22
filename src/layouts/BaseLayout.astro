@@ -1,0 +1,89 @@
+---
+import '../styles/global.css';
+import NavBar from '../components/NavBar.astro';
+import Footer from '../components/Footer.astro';
+import { withBase } from '../utils/url';
+
+interface Props {
+  title?: string;
+  description?: string;
+  className?: string;
+}
+
+const { title = 'Home', description, className } = Astro.props as Props;
+const pageTitle = `${title} · Thomas Patsanis`;
+const metaDescription =
+  description ??
+  'Full-Stack Developer blending Star Wars geekery with alpine calm. Building modern web/mobile products, ML-powered tools, and mentoring from the slopes.';
+---
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={metaDescription} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={metaDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={`https://tompats.github.io/portfolio${Astro.url.pathname}`} />
+    <meta property="og:image" content="/og-banner.svg" />
+    <meta name="theme-color" content="#050718" />
+    <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script is:inline>
+      const getPreferredTheme = () => {
+        const stored = localStorage.getItem('tp-theme');
+        if (stored) return stored;
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      };
+      document.documentElement.dataset.theme = getPreferredTheme();
+    </script>
+  </head>
+  <body class={`font-sans bg-[var(--bg)] text-[var(--text)]`}>
+    <div class="relative flex min-h-screen flex-col overflow-hidden">
+      <div class="pointer-events-none absolute inset-0 starfield blur-3xl"></div>
+      <div class={`relative flex flex-1 flex-col ${className ?? ''}`}>
+        <NavBar />
+        <main class="flex-1 px-4 pb-20 pt-24 sm:px-10 lg:px-16">
+          <slot />
+        </main>
+        <Footer />
+      </div>
+    </div>
+    <script type="module" is:inline>
+      const initScrollAnimations = () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        document.body.dataset.reducedMotion = prefersReducedMotion ? 'true' : 'false';
+        if (prefersReducedMotion) {
+          document.querySelectorAll('[data-animate]').forEach((node) => node.classList.add('is-visible'));
+          return;
+        }
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                const target = entry.target;
+                const delay = target.dataset.delay ? Number(target.dataset.delay) : 0;
+                setTimeout(() => target.classList.add('is-visible'), delay);
+                observer.unobserve(target);
+              }
+            });
+          },
+          { threshold: 0.25 }
+        );
+        document.querySelectorAll('[data-animate]').forEach((node) => observer.observe(node));
+      };
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initScrollAnimations, { once: true });
+      } else {
+        initScrollAnimations();
+      }
+    </script>
+  </body>
+</html>

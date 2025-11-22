@@ -1,0 +1,66 @@
+---
+import ThemeToggle from './ThemeToggle.astro';
+import { withBase, basePath } from '../utils/url';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/about', label: 'About' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const rawPath = Astro.url.pathname.replace(/\/?$/, '') || '/';
+const effectiveBase = basePath || '';
+const pathname = effectiveBase && rawPath.startsWith(effectiveBase) ? rawPath.slice(effectiveBase.length) || '/' : rawPath || '/';
+---
+<header class="pointer-events-auto sticky top-0 z-30 px-4 pt-6 sm:px-10 lg:px-16">
+  <div class="frosted-panel flex items-center justify-between border px-5 py-3 backdrop-blur-2xl">
+    <a href={withBase('/')} class="flex items-center gap-3" aria-label="Thomas Patsanis home">
+      <span class="grid h-11 w-11 place-items-center rounded-2xl bg-gradient-to-br from-aurora to-summit font-bold text-midnight">TP</span>
+      <div>
+        <p class="text-sm uppercase tracking-[0.35em] text-[var(--muted)]">Thomas Patsanis</p>
+        <p class="text-xs text-[var(--muted)]">Full-Stack Developer</p>
+      </div>
+    </a>
+    <nav class="hidden items-center gap-6 text-sm font-medium text-[var(--muted)] lg:flex">
+      {links.map((link) => (
+        <a
+          href={withBase(link.href)}
+          class={`relative transition hover:text-[var(--accent)] ${pathname === link.href ? 'text-[var(--accent)]' : ''}`}
+        >
+          {link.label}
+          {pathname === link.href && <span class="absolute -bottom-1 left-0 h-0.5 w-full bg-[var(--accent)]"></span>}
+        </a>
+      ))}
+      <ThemeToggle />
+    </nav>
+    <button class="lg:hidden" id="nav-toggle" aria-expanded="false" aria-controls="mobile-menu" type="button">
+      <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-[var(--border)] text-[var(--text)]">
+        <span class="sr-only">Toggle navigation</span>
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 7h16M4 12h16M4 17h16" />
+        </svg>
+      </div>
+    </button>
+  </div>
+  <div
+    id="mobile-menu"
+    class="frosted-panel mt-3 hidden flex-col gap-4 border p-6 text-base font-medium text-[var(--muted)] lg:hidden"
+  >
+    {links.map((link) => (
+      <a href={withBase(link.href)} class={pathname === link.href ? 'text-[var(--accent)]' : ''}>{link.label}</a>
+    ))}
+    <div class="pt-3">
+      <ThemeToggle />
+    </div>
+  </div>
+  <script type="module" is:inline>
+    const toggle = document.getElementById('nav-toggle');
+    const menu = document.getElementById('mobile-menu');
+    toggle?.addEventListener('click', () => {
+      if (!menu) return;
+      const isHidden = menu.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', (!isHidden).toString());
+    });
+  </script>
+</header>
