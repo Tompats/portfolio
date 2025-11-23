@@ -55,26 +55,31 @@ const filters: Array<'All' | ProjectCategory> = ['All', 'Full-Stack', 'Mobile', 
   }
 </style>
 <script type="module" lang="ts">
-  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-filter]'));
-  const cards = Array.from(document.querySelectorAll<HTMLElement>('[data-project]'));
-  let activeFilter: string = 'All';
+  const buttons = Array.from(document.querySelectorAll('[data-filter]'));
+  const cards = Array.from(document.querySelectorAll('[data-project]'));
+  let activeFilter = 'All';
 
-  const applyFilter = (filter: string) => {
+  const applyFilter = (filter) => {
     activeFilter = filter;
-    buttons.forEach((btn) => btn.setAttribute('aria-pressed', String(btn.dataset.filter === filter)));
-    const visibleCards = cards.filter((card) => {
-      const category = card.dataset.category;
-      return filter === 'All' || category === filter;
+
+    buttons.forEach((btn) => {
+      if (!(btn instanceof HTMLButtonElement)) return;
+      btn.setAttribute('aria-pressed', String(btn.dataset.filter === filter));
     });
+
+    let visibleIndex = 0;
     cards.forEach((card) => {
-      card.dataset.hidden = String(!visibleCards.includes(card));
-      card.style.transitionDelay = !visibleCards.includes(card)
-        ? '0ms'
-        : `${visibleCards.indexOf(card) * 80}ms`;
+      if (!(card instanceof HTMLElement)) return;
+      const category = card.dataset.category;
+      const shouldShow = filter === 'All' || category === filter;
+      card.dataset.hidden = String(!shouldShow);
+      card.style.transitionDelay = shouldShow ? `${visibleIndex * 80}ms` : '0ms';
+      if (shouldShow) visibleIndex += 1;
     });
   };
 
   buttons.forEach((button) => {
+    if (!(button instanceof HTMLButtonElement)) return;
     button.addEventListener('click', () => applyFilter(button.dataset.filter ?? 'All'));
   });
 

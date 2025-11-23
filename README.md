@@ -6,6 +6,7 @@ Modern Astro + TypeScript portfolio for Thomas Patsanis — playful, Star Wars-i
 - [Astro](https://astro.build/) with strict TypeScript
 - Tailwind CSS (custom theme + glassmorphism helpers)
 - Small vanilla TypeScript islands for filters, theme toggle, and form UX
+- Contact form submits via [Web3Forms](https://web3forms.com/) using a Fetch-based client handler
 - GitHub Actions workflow for Pages deployment
 
 ## 🚀 Local Development
@@ -28,3 +29,6 @@ The project is configured with `site = https://tompats.github.io` and `base = /p
 3. In your repository settings, enable GitHub Pages with the "GitHub Actions" deployment source.
 
 Once the workflow finishes, your site is live at `https://tompats.github.io/portfolio/`.
+
+## 📬 Contact Form Backend
+The contact page posts directly to Web3Forms from the browser using a Fetch-powered island. Replace the `YOUR_WEB3FORMS_ACCESS_KEY` placeholder in `src/pages/contact.astro` with your own key from the Web3Forms dashboard so submissions hit your inbox.

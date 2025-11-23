@@ -7,11 +7,12 @@ import SectionHeader from '../components/SectionHeader.astro';
     <div>
       <SectionHeader title="Let’s Build (or Ride)" subtitle="Contact" />
       <p class="text-base text-[var(--muted)]" data-animate>
-        Need a Treasure Planet-minded full-stack dev, a ski instructor who speaks in flow states, or someone to battle
+        Need a full-stack dev who can chart new paths, a ski instructor who speaks in flow states, or someone to battle
         Sith-grade bugs with a grin? Drop a note—this form is demo mode, yet my real inbox is always open.
       </p>
       <form id="contact-form" class="mt-10 space-y-4" novalidate>
         <div class="frosted-panel space-y-4 border border-white/10 p-6">
+          <input type="hidden" name="access_key" value="1bf4dbd7-a13b-4ce8-99e1-6ffe367942d1" />
           <label class="block" data-animate>
             <span class="text-sm uppercase tracking-[0.4em] text-[var(--muted)]">Name</span>
             <input
@@ -81,23 +82,45 @@ import SectionHeader from '../components/SectionHeader.astro';
     </div>
   </section>
   <script type="module" lang="ts">
-    const form = document.getElementById('contact-form') as HTMLFormElement | null;
-    const statusText = document.getElementById('form-status');
-    form?.addEventListener('submit', (event) => {
-      event.preventDefault();
-      if (!form) return;
-      const data = new FormData(form);
-      const name = String(data.get('name') ?? '').trim();
-      const email = String(data.get('email') ?? '').trim();
-      const message = String(data.get('message') ?? '').trim();
-      if (!name || !email || !message) {
-        statusText && (statusText.textContent = 'Please complete all fields before sending.');
-        statusText?.classList.remove('text-etherium');
-        return;
-      }
-      statusText && (statusText.textContent = 'Message sent (demo mode) — see you on the next sprint!');
-      statusText?.classList.add('text-etherium');
-      form.reset();
-    });
+    const formElement = document.getElementById('contact-form');
+    const statusElement = document.getElementById('form-status');
+
+    if (formElement instanceof HTMLFormElement && statusElement instanceof HTMLParagraphElement) {
+      formElement.addEventListener('submit', async (event) => {
+        event.preventDefault();
+
+        const data = new FormData(formElement);
+        const name = String(data.get('name') ?? '').trim();
+        const email = String(data.get('email') ?? '').trim();
+        const message = String(data.get('message') ?? '').trim();
+
+        if (!name || !email || !message) {
+          statusElement.textContent = 'Please complete all fields before sending.';
+          statusElement.classList.remove('text-etherium');
+          return;
+        }
+
+        try {
+          const response = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: data,
+          });
+          const result = await response.json();
+          const isSuccess = Boolean(result && typeof result === 'object' && result['success']);
+
+          if (response.ok && isSuccess) {
+            statusElement.textContent = 'Message sent — check your inbox soon!';
+            statusElement.classList.add('text-etherium');
+            formElement.reset();
+          } else {
+            statusElement.textContent = 'Something went wrong. Try again in a bit.';
+            statusElement.classList.remove('text-etherium');
+          }
+        } catch (error) {
+          statusElement.textContent = 'Network error. Please try again.';
+          statusElement.classList.remove('text-etherium');
+        }
+      });
+    }
   </script>
 </BaseLayout>
