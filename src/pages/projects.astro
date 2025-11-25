@@ -1,8 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionHeader from '../components/SectionHeader.astro';
-import ProjectFilter from '../components/ProjectFilter.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 import { projects } from '../content/data';
+
+const highlightedProjects = projects.slice(0, 4);
 ---
 <BaseLayout title="Projects" description="Projects and experiments by Thomas Patsanis across web, mobile, and backend adventures.">
   <section>
@@ -10,12 +12,16 @@ import { projects } from '../content/data';
     <div class="frosted-panel border border-white/10 p-6" data-animate>
       <p class="text-base text-[var(--muted)]">
         Every project here carries traces of Treasure Planet maps, late-night alpine ideas, and the occasional
-        lightsaber duel with stubborn bugs. Filter the log to find builds that match your mission profile.
+        lightsaber duel with stubborn bugs. Here are four builds that best capture that wandering spirit right now.
       </p>
     </div>
   </section>
 
   <section class="mt-12">
-    <ProjectFilter projects={projects} />
+    <div class="grid gap-6 md:grid-cols-2" data-animate>
+      {highlightedProjects.map((project, index) => (
+        <ProjectCard {...project} delay={index * 120} />
+      ))}
+    </div>
   </section>
 </BaseLayout>

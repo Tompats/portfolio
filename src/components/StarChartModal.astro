@@ -1,0 +1,182 @@
+---
+const chartNodes = [
+  {
+    id: 'hero',
+    label: 'Launch Bay',
+    description: 'Mission log & opening transmission',
+    target: '#hero',
+    x: 18,
+    y: 68,
+  },
+  {
+    id: 'tech',
+    label: 'Toolkit Orbit',
+    description: 'Systems powering etherium sails',
+    target: '#tech',
+    x: 42,
+    y: 32,
+  },
+  {
+    id: 'projects',
+    label: 'Expedition Grid',
+    description: 'Featured builds & experiments',
+    target: '#projects',
+    x: 70,
+    y: 60,
+  },
+  {
+    id: 'cta',
+    label: 'Signal Relay',
+    description: 'Contact links and open comms',
+    target: '#cta',
+    x: 55,
+    y: 85,
+  },
+];
+
+const chartConnections: Array<[string, string]> = [
+  ['hero', 'tech'],
+  ['tech', 'projects'],
+  ['projects', 'cta'],
+  ['hero', 'projects'],
+];
+---
+<div class="star-chart" data-star-chart>
+  <button class="star-chart__trigger" type="button" data-chart-open>
+    <span class="star-chart__spark"></span>
+    <span>Open star chart</span>
+    <svg viewBox="0 0 32 32" aria-hidden="true" class="h-5 w-5">
+      <path
+        d="M16 3L19.5 12.5L29 16L19.5 19.5L16 29L12.5 19.5L3 16L12.5 12.5L16 3Z"
+        fill="currentColor"
+        opacity="0.85"
+      />
+    </svg>
+  </button>
+  <div class="star-chart__overlay" data-chart-overlay aria-hidden="true">
+    <div class="star-chart__backdrop" data-chart-close></div>
+    <div
+      class="star-chart__panel"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="star-chart-title"
+      data-chart-panel
+      tabindex="-1"
+    >
+      <div class="flex flex-col gap-6 lg:flex-row">
+        <div class="flex-1 space-y-4">
+          <p class="text-[11px] uppercase tracking-[0.6em] text-[var(--muted)]">Treasure map</p>
+          <h2 id="star-chart-title" class="text-3xl font-semibold text-[var(--text)]">Plotting this portfolio orbit</h2>
+          <p class="text-sm text-[var(--muted)]">
+            Tap constellations to jump around the portfolio. Each waypoint nods to a section powering this hybrid of
+            Treasure Planet star charts and alpine calm.
+          </p>
+          <ul class="space-y-3 text-sm">
+            {chartNodes.map((node) => (
+              <li class="flex items-start gap-3 rounded-2xl border border-white/10 bg-black/20 p-3">
+                <span class="mt-1 h-2.5 w-2.5 rounded-full bg-etherium"></span>
+                <div>
+                  <a class="font-semibold text-[var(--text)] transition hover:text-etherium" href={node.target} data-chart-close>
+                    {node.label}
+                  </a>
+                  <p class="text-[var(--muted)]">{node.description}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div class="relative w-full flex-1">
+          <div class="star-chart__constellation">
+            <svg viewBox="0 0 100 100" class="h-full w-full">
+              {chartConnections.map(([from, to]) => {
+                const start = chartNodes.find((node) => node.id === from);
+                const end = chartNodes.find((node) => node.id === to);
+                if (!start || !end) return null;
+                return (
+                  <line
+                    x1={start.x}
+                    y1={start.y}
+                    x2={end.x}
+                    y2={end.y}
+                    stroke="url(#chartGlow)"
+                    stroke-width="0.7"
+                    stroke-linecap="round"
+                    opacity="0.8"
+                  />
+                );
+              })}
+              <defs>
+                <linearGradient id="chartGlow" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#4FC3F7" stop-opacity="0.9" />
+                  <stop offset="100%" stop-color="#7C3AED" stop-opacity="0.9" />
+                </linearGradient>
+                <radialGradient id="nodeGlow" cx="0.5" cy="0.5" r="0.5">
+                  <stop offset="0%" stop-color="#ffffff" stop-opacity="1" />
+                  <stop offset="70%" stop-color="#4fc3f7" stop-opacity="0.6" />
+                  <stop offset="100%" stop-color="#050814" stop-opacity="0" />
+                </radialGradient>
+              </defs>
+              {chartNodes.map((node) => (
+                <circle cx={node.x} cy={node.y} r="1.6" fill="url(#nodeGlow)" />
+              ))}
+            </svg>
+            {chartNodes.map((node) => (
+              <a
+                class="star-chart__node"
+                style={`inset-inline-start: ${node.x}%; inset-block-start: ${node.y}%;`}
+                href={node.target}
+                data-chart-close
+              >
+                <span>{node.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+      <button class="star-chart__close" type="button" data-chart-close aria-label="Close star chart">
+        Close
+      </button>
+    </div>
+  </div>
+</div>
+
+<script type="module" is:inline>
+  const initStarChart = () => {
+    const roots = document.querySelectorAll('[data-star-chart]');
+    roots.forEach((root) => {
+      const openButton = root.querySelector('[data-chart-open]');
+      const overlay = root.querySelector('[data-chart-overlay]');
+      const panel = root.querySelector('[data-chart-panel]');
+      if (!openButton || !overlay || !panel) return;
+      const closeElements = overlay.querySelectorAll('[data-chart-close]');
+      const toggle = (open) => {
+        overlay?.setAttribute('data-open', String(open));
+        overlay?.setAttribute('aria-hidden', open ? 'false' : 'true');
+        if (open) {
+          panel?.focus({ preventScroll: true });
+          document.body.style.setProperty('overflow', 'hidden');
+        } else {
+          document.body.style.removeProperty('overflow');
+          openButton?.focus({ preventScroll: true });
+        }
+      };
+      openButton.addEventListener('click', () => toggle(true));
+      closeElements.forEach((el) =>
+        el.addEventListener('click', () => {
+          toggle(false);
+        })
+      );
+      overlay.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
+          toggle(false);
+        }
+      });
+    });
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initStarChart, { once: true });
+  } else {
+    initStarChart();
+  }
+</script>

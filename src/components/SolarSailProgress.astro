@@ -1,0 +1,78 @@
+---
+---
+<div class="solar-sail" data-solar-sail aria-hidden="true">
+  <svg viewBox="0 0 80 260" class="solar-sail__svg">
+    <defs>
+      <linearGradient id="sailGlow" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0%" stop-color="#4FC3F7" stop-opacity="0.85" />
+        <stop offset="100%" stop-color="#D4AF37" stop-opacity="0.9" />
+      </linearGradient>
+    </defs>
+    <path
+      d="M20 230 C -5 140 -5 120 20 30 Q 46 5 60 30 Q 75 60 70 130 Q 60 210 20 230"
+      fill="none"
+      stroke="rgba(255,255,255,0.08)"
+      stroke-width="4"
+      stroke-linecap="round"
+    />
+    <path
+      data-sail-path
+      d="M20 230 C -5 140 -5 120 20 30 Q 46 5 60 30 Q 75 60 70 130 Q 60 210 20 230"
+      fill="none"
+      stroke="url(#sailGlow)"
+      stroke-width="4"
+      stroke-linecap="round"
+      stroke-dasharray="1"
+      stroke-dashoffset="1"
+    />
+    <circle data-sail-spark r="4" fill="url(#sailGlow)" opacity="0.9"></circle>
+  </svg>
+  <div class="solar-sail__caption">
+    <p class="text-[10px] uppercase tracking-[0.35em] text-[var(--muted)]">Solar winds</p>
+    <p class="text-lg font-semibold text-[var(--text)]"><span data-sail-percent>0%</span> charged</p>
+  </div>
+</div>
+
+<script type="module" is:inline>
+  const initSolarSail = () => {
+    const sail = document.querySelector('[data-solar-sail]');
+    if (!sail) return;
+    const path = sail.querySelector('[data-sail-path]');
+    const spark = sail.querySelector('[data-sail-spark]');
+    const percentage = sail.querySelector('[data-sail-percent]');
+    const svg = sail.querySelector('svg');
+    if (!(path instanceof SVGPathElement) || !(spark instanceof SVGCircleElement) || !svg) return;
+    const totalLength = path.getTotalLength();
+    path.style.strokeDasharray = `${totalLength}`;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let ticking = false;
+    const update = () => {
+      const doc = document.documentElement;
+      const maxScroll = doc.scrollHeight - window.innerHeight;
+      const progress = maxScroll > 0 ? Math.min(Math.max(window.scrollY / maxScroll, 0), 1) : 0;
+      path.style.strokeDashoffset = `${totalLength - totalLength * progress}`;
+      const point = path.getPointAtLength(totalLength * progress);
+      spark.setAttribute('cx', point.x.toString());
+      spark.setAttribute('cy', point.y.toString());
+      spark.style.opacity = prefersReducedMotion ? '0.5' : '0.9';
+      if (percentage) {
+        percentage.textContent = `${Math.round(progress * 100)}%`;
+      }
+      ticking = false;
+    };
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    update();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSolarSail, { once: true });
+  } else {
+    initSolarSail();
+  }
+</script>

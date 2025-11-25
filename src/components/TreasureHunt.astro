@@ -1,0 +1,111 @@
+---
+import { withBase } from '../utils/url';
+
+const treasureStars = [
+  { id: 'aurora', label: 'Aurora shard', hint: 'Hovering near mission log glow', top: '18%', left: '14%' },
+  { id: 'ridge', label: 'Ridge flare', hint: 'Anchored above alpine ridge gradients', top: '45%', right: '12%' },
+  { id: 'nebula', label: 'Nebula ember', hint: 'Peeking near the projects grid', top: '62%', left: '22%' },
+  { id: 'etherium', label: 'Etherium spark', hint: 'Orbiting the final call-to-action', top: '80%', right: '18%' },
+];
+---
+<div class="treasure-hunt" data-treasure-hunt>
+  {treasureStars.map((star) => (
+    <button
+      type="button"
+      class="treasure-hunt__star"
+      style={`top: ${star.top}; ${star.left ? `left: ${star.left}` : `right: ${star.right}`};`}
+      aria-label={`Collect ${star.label}`}
+      data-hunt-star={star.id}
+    >
+      <span class="sr-only">{star.hint}</span>
+    </button>
+  ))}
+  <div class="treasure-hunt__reward" data-hunt-reward aria-hidden="true">
+    <div class="treasure-hunt__panel" role="dialog" aria-modal="true" aria-live="polite">
+      <p class="text-[11px] uppercase tracking-[0.6em] text-[var(--muted)]">Secret log unlocked</p>
+      <h3 class="text-2xl font-semibold text-[var(--text)]">You found the Etherium!</h3>
+      <p class="text-sm text-[var(--muted)]">
+        Wayfinding sensors picked up every hidden flare. Enjoy this bonus "Etherium Drift" mission log and ping me if you
+        want to see more of the prototype.
+      </p>
+      <div class="rounded-2xl border border-white/10 bg-black/30 p-4 text-sm text-[var(--muted)]">
+        <p class="font-mono text-etherium">const secretMission = 'Etherium Drift';</p>
+        <p>status: 'concept stage, gravity engines humming';</p>
+        <p>payload: 'autonomous alpine explorer & holo charting tools';</p>
+      </div>
+      <div class="flex flex-wrap gap-3">
+        <a class="btn-primary" href={withBase('/projects')}>See expeditions</a>
+        <button class="treasure-hunt__close" type="button" data-hunt-close>Close</button>
+        <button class="treasure-hunt__reset" type="button" data-hunt-reset>Reset hunt</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module" is:inline>
+  const initTreasureHunt = () => {
+    const root = document.querySelector('[data-treasure-hunt]');
+    if (!root) return;
+    const stars = Array.from(root.querySelectorAll('[data-hunt-star]'));
+    if (!stars.length) return;
+    const reward = root.querySelector('[data-hunt-reward]');
+    const closeButton = root.querySelector('[data-hunt-close]');
+    const resetButton = root.querySelector('[data-hunt-reset]');
+    const storageKey = 'celestial-hunt-stars';
+    const readStored = () => {
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (!stored) return [];
+        const parsed = JSON.parse(stored);
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (error) {
+        return [];
+      }
+    };
+    const found = new Set(readStored());
+    const persist = () => {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(Array.from(found)));
+      } catch (error) {
+        /* ignore */
+      }
+    };
+    const update = () => {
+      stars.forEach((star) => {
+        const id = star.getAttribute('data-hunt-star');
+        const isFound = id ? found.has(id) : false;
+        star.setAttribute('data-found', String(isFound));
+      });
+      const allFound = found.size === stars.length;
+      if (reward) {
+        reward.setAttribute('data-open', String(allFound));
+        reward.setAttribute('aria-hidden', String(!allFound));
+      }
+    };
+    stars.forEach((button) => {
+      button.addEventListener('click', () => {
+        const id = button.getAttribute('data-hunt-star');
+        if (!id) return;
+        found.add(id);
+        persist();
+        update();
+      });
+    });
+    closeButton?.addEventListener('click', () => {
+      reward?.setAttribute('data-open', 'false');
+      reward?.setAttribute('aria-hidden', 'true');
+    });
+    resetButton?.addEventListener('click', () => {
+      found.clear();
+      persist();
+      update();
+    });
+    update();
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTreasureHunt, { once: true });
+  } else {
+    initTreasureHunt();
+  }
+</script>

@@ -6,7 +6,7 @@ import ProjectCard from '../components/ProjectCard.astro';
 import { projects, techStack } from '../content/data';
 import { withBase } from '../utils/url';
 
-const featuredProjects = projects.filter((project) => project.featured).slice(0, 4);
+const featuredProjects = projects.filter((project) => project.featured).slice(0, 2);
 ---
 <BaseLayout title="Home" description="Thomas Patsanis is a Full-Stack Developer uniting Treasure Planet wonder, alpine calm, and Star Wars grit to build ambitious products.">
   <section class="mx-auto grid gap-12 lg:grid-cols-[1.05fr,0.95fr]">
