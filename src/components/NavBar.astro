@@ -27,7 +27,7 @@ const pathname = effectiveBase && rawPath.startsWith(effectiveBase) ? rawPath.sl
         <p class="text-xs text-[var(--muted)]">Full-Stack Explorer</p>
       </div>
     </a>
-    <nav class="relative z-10 hidden items-center gap-6 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--muted)] lg:flex">
+    <nav class="absolute left-1/2 top-1/2 z-10 hidden -translate-x-1/2 -translate-y-1/2 items-center gap-6 text-xs font-semibold uppercase tracking-[0.35em] text-[var(--muted)] lg:flex">
       {links.map((link) => (
         <a
           href={withBase(link.href)}
