@@ -18,8 +18,6 @@
     --gradient-start: #050814;
     --gradient-mid: #0b0f19;
     --gradient-end: #111827;
-    --aurora-primary: rgba(79, 195, 247, 0.4);
-    --aurora-secondary: rgba(124, 58, 237, 0.35);
   }
 
   :root[data-theme='light'] {
@@ -37,8 +35,6 @@
     --gradient-start: #e0f2ff;
     --gradient-mid: #e2e8f0;
     --gradient-end: #f1f5f9;
-    --aurora-primary: rgba(37, 99, 235, 0.28);
-    --aurora-secondary: rgba(249, 115, 22, 0.25);
   }
 
   html {
@@ -174,46 +170,6 @@
 }
 
 @layer utilities {
-  .aurora-layer {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-    mix-blend-mode: screen;
-    opacity: 0.7;
-  }
-
-  .aurora-band {
-    position: absolute;
-    width: 70vw;
-    height: 35vh;
-    filter: blur(80px);
-    border-radius: 999px;
-    opacity: 0.85;
-    animation: auroraFlow 26s ease-in-out infinite;
-    will-change: transform, opacity;
-  }
-
-  .aurora-band--one {
-    top: 8%;
-    left: -15%;
-    background: linear-gradient(120deg, var(--aurora-primary), transparent 65%);
-  }
-
-  .aurora-band--two {
-    bottom: 5%;
-    right: -10%;
-    background: linear-gradient(220deg, var(--aurora-secondary), transparent 55%);
-    animation-duration: 32s;
-    animation-delay: -8s;
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .aurora-layer {
-      display: none;
-    }
-  }
-
   .starfield {
     background-image:
       radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.35) 1px, transparent 1px),
@@ -339,23 +295,6 @@ body[data-reduced-motion='true'] * {
   100% {
     transform: scale(1);
     opacity: 0;
-  }
-}
-
-@keyframes auroraFlow {
-  0% {
-    transform: translate3d(-15%, -10%, 0) scale(0.95) rotate(6deg);
-    opacity: 0.6;
-  }
-
-  50% {
-    transform: translate3d(10%, 5%, 0) scale(1.05) rotate(2deg);
-    opacity: 1;
-  }
-
-  100% {
-    transform: translate3d(-15%, -5%, 0) scale(0.95) rotate(6deg);
-    opacity: 0.6;
   }
 }
 
