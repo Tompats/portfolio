@@ -13,9 +13,9 @@ const { title, description, tags, github, demo, delay = 0, animated = true } = A
   class="frosted-panel hover-card relative flex h-full flex-col border border-white/5 p-6"
   {...(animated ? { 'data-animate': true, 'data-delay': delay } : {})}
 >
-  <div class="pointer-events-none absolute inset-0 overflow-hidden rounded-[28px]">
-    <div class="absolute -top-16 right-0 h-32 w-32 rounded-full bg-etherium/20 blur-3xl"></div>
-    <div class="absolute -bottom-12 left-6 h-28 w-28 rounded-full bg-nebula/25 blur-3xl"></div>
+  <div class="project-card__bg pointer-events-none absolute inset-0 overflow-hidden rounded-[28px]">
+    <div class="project-orb project-orb--etherium absolute -top-16 right-0 h-32 w-32 rounded-full bg-etherium/20 blur-3xl"></div>
+    <div class="project-orb project-orb--nebula absolute -bottom-12 left-6 h-28 w-28 rounded-full bg-nebula/25 blur-3xl"></div>
   </div>
   <div class="relative z-10">
     <div class="mb-5 flex items-center justify-between text-[11px] font-semibold uppercase tracking-[0.45em] text-[var(--muted)]">
