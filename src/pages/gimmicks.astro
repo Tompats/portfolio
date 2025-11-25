@@ -1,0 +1,1575 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionHeader from '../components/SectionHeader.astro';
+import { withBase } from '../utils/url';
+---
+<BaseLayout title="Gimmicks" description="A playground of etherium holomaps and Jedi-inspired flourishes that keep the portfolio alive.">
+  <section data-animate>
+    <SectionHeader title="Gimmicks" subtitle="Holomap Hangar" />
+    <p class="mt-4 max-w-3xl text-base text-[var(--muted)]">
+      Sometimes the mission calls for pure flair. This bay houses the experimental widgets that don’t quite fit anywhere
+      else—Treasure Planet map tests, Star Wars holocrons, and other joyful distractions.
+    </p>
+  </section>
+
+  <section class="mt-16" data-animate>
+    <div class="gimmick-grid gimmick-grid--forge">
+      <div class="saber-lab" data-saber data-active="false" style="--saber-color: #4fc3f7;">
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Kyber forge</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Lightsaber ignition bench</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Tap the ignition to extend a random kyber color blade. Each activation spins up a subtle hum and trailing arc
+            that feels at home beside a Treasure Planet holomap.
+          </p>
+        </div>
+        <div class="saber-stage">
+          <div class="saber-chassis">
+            <div class="saber-hilt">
+              <span class="saber-grip"></span>
+              <span class="saber-switch"></span>
+              <span class="saber-pommel"></span>
+            </div>
+            <div class="saber-beam">
+              <div class="saber-blade" data-saber-blade></div>
+              <div class="saber-trail" data-saber-trail></div>
+            </div>
+          </div>
+        </div>
+        <div class="saber-controls">
+          <button id="saber-toggle" class="btn-primary justify-center">Ignite saber</button>
+          <button id="saber-random" class="btn-secondary justify-center">New kyber color</button>
+        </div>
+        <audio data-saber-audio="ignite" src={withBase('/lightsaber-ignition.mp3')} preload="auto" aria-hidden="true"></audio>
+        <audio data-saber-audio="retract" src={withBase('/lightsaber-retract.mp3')} preload="auto" aria-hidden="true"></audio>
+        <audio data-saber-audio="swing" src={withBase('/lightsaber-swing.mp3')} preload="auto" aria-hidden="true"></audio>
+      </div>
+      <div class="crawl-lab" data-crawl>
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Opening crawl</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Treasure Wars prologue</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            A mash-up crawl scrolls toward the stars with a tilt straight out of 1977. Replay it anytime to feel the
+            mission briefing energy.
+          </p>
+        </div>
+        <div class="crawl-stage">
+          <div class="crawl-stars"></div>
+          <div class="crawl-text is-running" data-crawl-text>
+            <p class="crawl-episode">Episode ☄︎X</p>
+            <p class="crawl-title">Treasure Wars</p>
+            <p>
+              In the wake of etherium storms, Captain Thomas charts a course between Treasure Planet’s portal map and the
+              Jedi archives. Armed with adaptive TypeScript sabers, he rallies explorers across alpine ridges and lunar
+              shipyards to deploy resilient products.
+            </p>
+            <p>
+              Pursued by blockers and Sith-grade bugs, the crew loads shimmering holomaps, morph companions, and saber
+              droids onto the flagship. Hope lives in daring releases and joyful gimmicks.
+            </p>
+          </div>
+        </div>
+        <div class="crawl-controls">
+          <button id="crawl-replay" class="btn-secondary justify-center">Replay crawl</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-20" data-animate>
+    <SectionHeader title="Etherium experiments" subtitle="Treasure Planet" />
+    <p class="mt-4 max-w-3xl text-base text-[var(--muted)]">
+      The Treasure Planet core is all about tactile holomaps and breeze-responsive gear. Drag the portal dial to lock on a
+      destination or let the solar surfer chase your cursor through a wind tunnel of etherium streams.
+    </p>
+    <div class="gimmick-grid mt-10">
+      <div class="map-lab" data-map>
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Etherium map dial</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Portal coordinate selector</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Spin the dial to align with a Treasure Planet waypoint. Each lock shifts the logbook with a course update
+            referencing real hero projects.
+          </p>
+        </div>
+        <div class="map-stage">
+          <div class="map-dial" data-map-dial>
+            <div class="map-dial-ring">
+              <button
+                class="map-dial-option is-active"
+                data-map-option
+                data-angle="12"
+                style="--option-angle: 12deg;"
+                data-label="Montressor Dock"
+                data-note="Daily stand-ups, fresh caffeine, and launch windows plotted beside the portal schematics."
+                data-coord="Coord: A3 ⟢ 27°"
+              >
+                <span>Montressor Dock</span>
+              </button>
+              <button
+                class="map-dial-option"
+                data-map-option
+                data-angle="94"
+                style="--option-angle: 94deg;"
+                data-label="Crescent Nebula"
+                data-note="Design reviews hover among aurora clouds while the map projects spline paths through storms."
+                data-coord="Coord: K9 ⟢ 04°"
+              >
+                <span>Crescent Nebula</span>
+              </button>
+              <button
+                class="map-dial-option"
+                data-map-option
+                data-angle="186"
+                style="--option-angle: 186deg;"
+                data-label="Etherium Straits"
+                data-note="QA runs via droid convoys skating the solar currents with latency metrics streaming above."
+                data-coord="Coord: S4 ⟢ 78°"
+              >
+                <span>Etherium Straits</span>
+              </button>
+              <button
+                class="map-dial-option"
+                data-map-option
+                data-angle="268"
+                style="--option-angle: 268deg;"
+                data-label="Celestial Observatory"
+                data-note="Product vision talks beam across stardust lenses, mapping the next quarter of constellations."
+                data-coord="Coord: V1 ⟢ 332°"
+              >
+                <span>Celestial Observatory</span>
+              </button>
+            </div>
+            <div class="map-dial-pointer" data-map-pointer></div>
+            <div class="map-dial-core">
+              <span>Portal</span>
+            </div>
+          </div>
+          <div class="map-log" data-map-log>
+            <p class="map-log-label" data-map-log-label>Montressor Dock</p>
+            <p class="map-log-note" data-map-log-note>
+              Daily stand-ups, fresh caffeine, and launch windows plotted beside the portal schematics.
+            </p>
+            <p class="map-log-coord" data-map-log-coord>Coord: A3 ⟢ 27°</p>
+          </div>
+        </div>
+      </div>
+      <div class="surfer-lab" data-surfer>
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Solar surfer</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Wind tunnel chase</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Move the cursor (or finger) across the wind tunnel to guide the solar surfer. Trails stretch and respond to
+            the angle so it feels like plotting an etherium slingshot.
+          </p>
+        </div>
+        <div class="surfer-stage" data-surfer-stage>
+          <div class="surfer-trail" data-surfer-trail></div>
+          <div class="surfer-board" data-surfer-board>
+            <span class="surfer-board-light"></span>
+          </div>
+        </div>
+        <p class="surfer-tip">Tip: pause on corners to watch the wake settle like a holomap ripple.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="mt-20" data-animate>
+    <SectionHeader title="Disney lore tie-ins" subtitle="Playful labs" />
+    <p class="mt-4 max-w-3xl text-base text-[var(--muted)]">
+      Morph isn’t the only sidekick on deck. These cards nod to Disney icons—from constellations that outline story arcs
+      to pixie dust gauges that reward scroll progress.
+    </p>
+    <div class="gimmick-grid mt-10">
+      <div class="morph-lab" data-morph>
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Morph companion</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Sidekick moodboard</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Morph mirrors your pointer and slips into other Disney silhouettes. Tweak the palette to match whatever
+            collaboration vibe the sprint needs.
+          </p>
+        </div>
+        <div class="morph-stage" data-morph-stage>
+          <div class="morph-avatar" data-morph-avatar>
+            <span class="morph-face" data-morph-face></span>
+          </div>
+        </div>
+        <div class="morph-panel">
+          <div>
+            <p class="morph-label" data-morph-label>Stitch-mode Morph</p>
+            <p class="morph-note" data-morph-note>
+              Chaotic good energy ideal for spiking prototypes late at night under Montressor stars.
+            </p>
+          </div>
+          <div class="morph-options">
+            <button class="morph-option is-active" data-morph-option="stitch">Stitch</button>
+            <button class="morph-option" data-morph-option="pascal">Pascal</button>
+            <button class="morph-option" data-morph-option="hei">Hei Hei</button>
+            <button class="morph-option" data-morph-option="glow">Pixie glow</button>
+          </div>
+        </div>
+      </div>
+      <div class="constellation-lab" data-constellations>
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Aurora stories</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Constellation cues</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Case studies appear as constellations inspired by the Disney vault: a Treasure Planet crest, a castle spire,
+            and Tiana’s lily.
+          </p>
+        </div>
+        <div class="constellation-stage">
+          <article class="constellation-card" data-constellation-item>
+            <svg viewBox="0 0 200 200" role="presentation" aria-hidden="true">
+              <path d="M30 150 L80 90 L140 110 L170 40" />
+              <circle cx="30" cy="150" r="4" />
+              <circle cx="80" cy="90" r="5" />
+              <circle cx="140" cy="110" r="4" />
+              <circle cx="170" cy="40" r="6" />
+            </svg>
+            <div>
+              <p class="constellation-name">Portal Crest</p>
+              <p class="constellation-note">Ships highlight arcs when an experiment bends reality enough to justify a new portal.</p>
+            </div>
+          </article>
+          <article class="constellation-card" data-constellation-item>
+            <svg viewBox="0 0 200 200" role="presentation" aria-hidden="true">
+              <path d="M40 170 L60 60 L100 30 L140 60 L160 170" />
+              <circle cx="40" cy="170" r="4" />
+              <circle cx="60" cy="60" r="5" />
+              <circle cx="100" cy="30" r="5" />
+              <circle cx="140" cy="60" r="5" />
+              <circle cx="160" cy="170" r="4" />
+            </svg>
+            <div>
+              <p class="constellation-name">Castle Spire</p>
+              <p class="constellation-note">Explains platform foundations—every turret is another reusable module in Astro.</p>
+            </div>
+          </article>
+          <article class="constellation-card" data-constellation-item>
+            <svg viewBox="0 0 200 200" role="presentation" aria-hidden="true">
+              <path d="M60 140 C80 120 120 120 140 140 L150 150" />
+              <path d="M90 110 Q100 80 110 110" />
+              <circle cx="60" cy="140" r="4" />
+              <circle cx="90" cy="110" r="4" />
+              <circle cx="110" cy="110" r="4" />
+              <circle cx="140" cy="140" r="4" />
+              <circle cx="150" cy="150" r="4" />
+            </svg>
+            <div>
+              <p class="constellation-name">Bayou Bloom</p>
+              <p class="constellation-note">Celebrates the Tiana-level hospitality layered into onboarding flows and docs.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+      <div class="pixie-lab" data-gauge>
+        <div>
+          <p class="text-[11px] uppercase tracking-[0.55em] text-[var(--muted)]">Pixie dust</p>
+          <h3 class="mt-3 text-2xl font-semibold text-[var(--text)]">Launch gauge</h3>
+          <p class="mt-2 text-sm text-[var(--muted)]">
+            Scroll or tap to charge the gauge. Once it hits 100%, balloons lift the avatar in a tiny Up-style celebration
+            while particles stream past.
+          </p>
+        </div>
+        <div class="pixie-stage">
+          <div class="pixie-stage-grid">
+            <div class="pixie-gauge" data-gauge-meter>
+              <div class="pixie-gauge-ring"></div>
+              <div class="pixie-gauge-core">
+                <p class="pixie-percent" data-gauge-percent>0%</p>
+                <p class="pixie-label">Ready</p>
+              </div>
+              <div class="pixie-balloon" data-gauge-balloon>
+                <span class="pixie-string"></span>
+              </div>
+            </div>
+            <div class="pixie-scroll" data-gauge-scroll>
+              <div class="pixie-scroll-fill">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+          <div class="pixie-particles">
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+            <span data-gauge-particle></span>
+          </div>
+        </div>
+        <p class="pixie-tip">Scroll inside the dust column or tap to add pixie dust.</p>
+        <div class="pixie-controls">
+          <button class="btn-primary justify-center" data-gauge-charge>Tap to add pixie dust</button>
+          <button class="btn-secondary justify-center" data-gauge-reset>Reset gauge</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <style is:inline>
+    .gimmick-grid {
+      display: grid;
+      gap: 0.75rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+
+
+    .gimmick-grid--forge {
+      align-items: stretch;
+    }
+
+    .saber-lab,
+    .crawl-lab {
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2rem;
+      background: radial-gradient(circle at 0% 30%, rgba(79, 195, 247, 0.15), transparent 60%),
+        radial-gradient(circle at 90% 10%, rgba(124, 58, 237, 0.2), transparent 55%),
+        rgba(5, 8, 20, 0.85);
+      box-shadow: 0 30px 60px rgba(2, 6, 23, 0.55);
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .saber-stage,
+    .crawl-stage {
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 1.5rem;
+      background: rgba(5, 8, 20, 0.55);
+      min-height: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .saber-stage::after {
+      content: '';
+      position: absolute;
+      inset: 10% 5% 5% 5%;
+      border-radius: 24px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.08), transparent 65%);
+      opacity: 0.5;
+      pointer-events: none;
+    }
+
+    .saber-chassis {
+      position: relative;
+      margin: 0 auto;
+      padding: 2rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      width: min(90%, 520px);
+    }
+
+    .saber-hilt {
+      position: relative;
+      width: 140px;
+      height: 28px;
+      background: linear-gradient(90deg, rgba(15, 23, 42, 0.9), rgba(51, 65, 85, 0.9));
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.45);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0 0.5rem;
+    }
+
+    .saber-beam {
+      position: relative;
+      width: clamp(200px, 52vw, 360px);
+      height: 30px;
+      display: flex;
+      align-items: center;
+      margin-left: -12px;
+    }
+
+    .saber-beam::before {
+      content: '';
+      position: absolute;
+      left: -12px;
+      top: 50%;
+      width: 14px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--saber-color, #4fc3f7);
+      box-shadow: 0 0 24px var(--saber-color, #4fc3f7);
+      transform: translateY(-50%);
+      opacity: 0.35;
+      transition: opacity 0.3s ease;
+    }
+
+    .saber-grip,
+    .saber-switch,
+    .saber-pommel {
+      display: inline-block;
+      height: 14px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .saber-grip {
+      flex: 1;
+    }
+
+    .saber-switch {
+      width: 24px;
+      background: rgba(212, 175, 55, 0.8);
+      box-shadow: 0 0 12px rgba(212, 175, 55, 0.7);
+    }
+
+    .saber-pommel {
+      width: 18px;
+      height: 18px;
+    }
+
+    .saber-blade {
+      position: relative;
+      height: 12px;
+      width: 0;
+      border-radius: 0 999px 999px 0;
+      background: var(--saber-color, #4fc3f7);
+      box-shadow: 0 0 35px var(--saber-color, #4fc3f7);
+      transition: width 0.4s ease, opacity 0.4s ease;
+      opacity: 0;
+      animation: saberFlicker 3s ease-in-out infinite;
+      margin-left: -4px;
+    }
+
+    .saber-trail {
+      position: absolute;
+      top: 50%;
+      left: -4px;
+      height: 24px;
+      width: 0;
+      border-radius: 999px;
+      border: 1px solid var(--saber-color, #4fc3f7);
+      opacity: 0;
+      transform: translateY(-50%) scaleY(1);
+      transform-origin: center;
+      transition: opacity 0.4s ease, width 0.4s ease;
+      filter: blur(2px);
+    }
+
+    [data-saber][data-active='true'] .saber-blade {
+      width: 100%;
+      opacity: 1;
+    }
+
+    [data-saber][data-active='true'] .saber-beam::before {
+      opacity: 0.8;
+    }
+
+    [data-saber][data-active='true'] .saber-trail {
+      width: calc(100% + 10px);
+      opacity: 0.45;
+      animation: saberHum 4s ease-in-out infinite;
+    }
+
+    .saber-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .crawl-lab::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 70% 10%, rgba(255, 255, 255, 0.08), transparent 60%);
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .crawl-stage {
+      perspective: 600px;
+    }
+
+    .crawl-stars {
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255, 255, 255, 0.5) 1px, transparent 1px),
+        radial-gradient(circle, rgba(79, 195, 247, 0.35) 1px, transparent 1px);
+      background-size: 180px 180px, 260px 260px;
+      animation: starDrift 50s linear infinite;
+      opacity: 0.7;
+    }
+
+    .crawl-text {
+      position: absolute;
+      bottom: -80px;
+      width: 130%;
+      left: -15%;
+      font-family: 'Space Grotesk', 'Inter', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: #fcd34d;
+      text-align: center;
+      transform-origin: 50% 100%;
+      pointer-events: none;
+      transform: rotateX(32deg) translateZ(-80px);
+    }
+
+    .crawl-text p {
+      margin-bottom: 1.5rem;
+    }
+
+    .crawl-episode {
+      font-size: 0.85rem;
+    }
+
+    .crawl-title {
+      font-size: 1.4rem;
+      letter-spacing: 0.3em;
+    }
+
+    .crawl-text.is-running {
+      animation: crawlScroll 46s linear infinite;
+    }
+
+    .crawl-controls {
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .map-lab,
+    .surfer-lab,
+    .morph-lab,
+    .constellation-lab,
+    .pixie-lab {
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 2rem;
+      background: radial-gradient(circle at 0% 0%, rgba(15, 118, 110, 0.12), transparent 65%),
+        radial-gradient(circle at 120% 20%, rgba(250, 204, 21, 0.12), transparent 60%),
+        rgba(5, 8, 20, 0.85);
+      box-shadow: 0 30px 60px rgba(2, 6, 23, 0.45);
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .map-stage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 1rem;
+      align-items: stretch;
+    }
+
+    .map-dial {
+      position: relative;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      aspect-ratio: 1/1;
+      background: radial-gradient(circle, rgba(79, 195, 247, 0.2), rgba(5, 8, 20, 0.9)),
+        radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.2), transparent 60%);
+      overflow: hidden;
+    }
+
+    .map-dial::after {
+      content: '';
+      position: absolute;
+      inset: 18%;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.2);
+      opacity: 0.4;
+    }
+
+    .map-dial-ring {
+      position: absolute;
+      inset: 0;
+    }
+
+    .map-dial-option {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-origin: center center;
+      transform: translate(-50%, -50%) translate(var(--option-x, 0px), var(--option-y, 0px));
+      background: rgba(8, 47, 73, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 999px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #e0f2fe;
+      cursor: pointer;
+      transition: transform 0.3s ease, background 0.3s ease, color 0.3s ease;
+      width: min(44%, 140px);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .map-dial-option span {
+      display: inline-block;
+      transform: rotate(var(--option-rotate, 0deg));
+    }
+
+    .map-dial-option.is-active {
+      background: rgba(59, 130, 246, 0.8);
+      color: #0f172a;
+    }
+
+    .map-dial-pointer {
+      position: absolute;
+      bottom: 50%;
+      left: 50%;
+      width: 6px;
+      height: 45%;
+      border-radius: 999px;
+      background: linear-gradient(180deg, rgba(14, 165, 233, 0.4), rgba(125, 211, 252, 0.95));
+      box-shadow: 0 0 25px rgba(125, 211, 252, 0.8);
+      transform-origin: 50% 100%;
+      transform: translate(-50%, 0) rotate(var(--map-angle, 12deg));
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .map-dial-core {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: rgba(2, 6, 23, 0.8);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248, 250, 252, 0.7);
+    }
+
+    .map-log {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 1.2rem;
+      background: rgba(15, 23, 42, 0.7);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .map-log-label {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .map-log-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .map-log-coord {
+      font-size: 0.8rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(248, 250, 252, 0.6);
+    }
+
+    .surfer-stage {
+      border-radius: 28px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      height: 240px;
+      background: radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(56, 189, 248, 0.25), transparent 55%),
+        linear-gradient(135deg, rgba(15, 23, 42, 0.8), rgba(15, 118, 110, 0.45));
+      position: relative;
+      overflow: hidden;
+      cursor: crosshair;
+    }
+
+    .surfer-trail {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 60%), rgba(125, 211, 252, 0.35), transparent 55%);
+      filter: blur(12px);
+      transition: background-position 0.2s ease;
+      pointer-events: none;
+    }
+
+    .surfer-board {
+      position: absolute;
+      top: var(--surfer-y, 50%);
+      left: var(--surfer-x, 50%);
+      width: 90px;
+      height: 26px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(13, 148, 136, 0.8), rgba(96, 165, 250, 0.95));
+      transform: translate(-50%, -50%) rotate(var(--surfer-tilt, 0deg));
+      box-shadow: 0 10px 25px rgba(14, 165, 233, 0.45);
+      transition: transform 0.08s linear;
+      pointer-events: none;
+    }
+
+    .surfer-board-light {
+      position: absolute;
+      inset: 4px 10px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), transparent);
+      opacity: 0.8;
+    }
+
+    .surfer-tip {
+      font-size: 0.8rem;
+      color: rgba(248, 250, 252, 0.65);
+    }
+
+    .morph-stage {
+      border-radius: 26px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      height: 220px;
+      background: radial-gradient(circle at var(--morph-x, 50%) var(--morph-y, 50%), rgba(236, 72, 153, 0.2), transparent 65%),
+        rgba(2, 6, 23, 0.75);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .morph-avatar {
+      --morph-color: #38bdf8;
+      position: absolute;
+      top: var(--morph-y, 50%);
+      left: var(--morph-x, 50%);
+      width: 120px;
+      height: 120px;
+      border-radius: var(--morph-radius, 58% 42% 60% 40% / 54% 46% 58% 42%);
+      background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 60%), var(--morph-color, #38bdf8);
+      transform: translate(-50%, -50%);
+      transition: background 0.3s ease, border-radius 0.4s ease;
+      box-shadow: 0 20px 35px rgba(56, 189, 248, 0.3);
+    }
+
+    .morph-face {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+    }
+
+    .morph-face::before,
+    .morph-face::after {
+      content: '';
+      width: 14px;
+      height: 8px;
+      border-radius: 999px 999px 0 0;
+      background: rgba(15, 23, 42, 0.7);
+      transform: rotate(10deg);
+    }
+
+    .morph-face::after {
+      transform: rotate(-10deg);
+    }
+
+    .morph-panel {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      padding: 1.1rem;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 0.9rem;
+    }
+
+    .morph-label {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .morph-note {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .morph-options {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .morph-option {
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 0.35rem 0.9rem;
+      font-size: 0.75rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(248, 250, 252, 0.75);
+      background: transparent;
+      cursor: pointer;
+      transition: background 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+    }
+
+    .morph-option.is-active {
+      background: rgba(244, 114, 182, 0.9);
+      color: #0f172a;
+      border-color: rgba(244, 114, 182, 0.8);
+    }
+
+    .constellation-stage {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0.9rem;
+    }
+
+    .constellation-card {
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      padding: 1rem;
+      background: rgba(15, 23, 42, 0.6);
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+      opacity: 0.6;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    [data-constellation-item].is-visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .constellation-card svg {
+      width: 100%;
+      height: 140px;
+      stroke: rgba(248, 250, 252, 0.7);
+      stroke-width: 2;
+      fill: none;
+      filter: drop-shadow(0 0 8px rgba(248, 250, 252, 0.4));
+    }
+
+    .constellation-card circle {
+      fill: rgba(248, 250, 252, 0.9);
+    }
+
+    .constellation-name {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .constellation-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .pixie-stage {
+      position: relative;
+      margin-top: 0.5rem;
+    }
+
+    .pixie-stage-grid {
+      display: grid;
+      grid-template-columns: minmax(200px, 260px) minmax(120px, 1fr);
+      gap: 1.25rem;
+      align-items: center;
+    }
+
+    .pixie-gauge {
+      position: relative;
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pixie-gauge-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      background: conic-gradient(
+        rgba(248, 250, 252, 0.1) 0deg,
+        rgba(248, 250, 252, 0.1) var(--progress-angle, 0deg),
+        rgba(15, 23, 42, 0.6) var(--progress-angle, 0deg),
+        rgba(15, 23, 42, 0.6) 360deg
+      );
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .pixie-gauge-core {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.25rem;
+      box-shadow: inset 0 0 25px rgba(59, 130, 246, 0.25);
+    }
+
+    .pixie-percent {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .pixie-label {
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: rgba(248, 250, 252, 0.65);
+      text-transform: uppercase;
+    }
+
+    .pixie-balloon {
+      position: absolute;
+      top: 20%;
+      left: 50%;
+      width: 48px;
+      height: 60px;
+      border-radius: 50% 50% 45% 45%;
+      background: linear-gradient(180deg, rgba(249, 168, 212, 0.9), rgba(219, 39, 119, 0.9));
+      transform: translate(-50%, 0);
+      box-shadow: 0 20px 40px rgba(236, 72, 153, 0.35);
+      opacity: 0;
+      transition: transform 0.5s ease, opacity 0.5s ease;
+    }
+
+    .pixie-string {
+      position: absolute;
+      top: 60px;
+      left: 50%;
+      width: 2px;
+      height: 40px;
+      background: rgba(248, 250, 252, 0.8);
+      transform: translateX(-50%);
+    }
+
+    .pixie-particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .pixie-scroll {
+      height: 240px;
+      border-radius: 24px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(15, 23, 42, 0.7);
+      overflow-y: auto;
+      padding: 0.4rem;
+      box-shadow: inset 0 0 20px rgba(59, 130, 246, 0.15);
+      position: relative;
+    }
+
+    .pixie-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    .pixie-scroll::-webkit-scrollbar-thumb {
+      background: rgba(248, 250, 252, 0.4);
+      border-radius: 999px;
+    }
+
+    .pixie-scroll-fill {
+      height: 760px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(253, 224, 71, 0.3), transparent 60%),
+        linear-gradient(0deg, rgba(236, 72, 153, 0.25), rgba(14, 165, 233, 0.25));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pixie-scroll-fill span {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(248, 250, 252, 0.6);
+      opacity: 0.5;
+      animation: pixieScrollPulse 6s ease-in-out infinite;
+    }
+
+    .pixie-scroll-fill span:nth-child(1) {
+      top: 40px;
+      left: 30%;
+    }
+
+    .pixie-scroll-fill span:nth-child(2) {
+      top: 180px;
+      left: 60%;
+      animation-delay: 1.5s;
+    }
+
+    .pixie-scroll-fill span:nth-child(3) {
+      top: 300px;
+      left: 40%;
+      animation-delay: 0.9s;
+    }
+
+    .pixie-scroll-fill span:nth-child(4) {
+      top: 440px;
+      left: 20%;
+      animation-delay: 2.1s;
+    }
+
+    .pixie-scroll-fill span:nth-child(5) {
+      top: 580px;
+      left: 70%;
+      animation-delay: 1s;
+    }
+
+    .pixie-scroll-fill span:nth-child(6) {
+      top: 700px;
+      left: 45%;
+      animation-delay: 2.8s;
+    }
+
+    .pixie-particles span {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(253, 224, 71, 0.7);
+      opacity: 0;
+      transform: translateY(0);
+      animation: pixieDrift 4s linear infinite;
+      animation-play-state: paused;
+    }
+
+    .pixie-particles span.is-active {
+      opacity: 1;
+      animation-play-state: running;
+    }
+
+    .pixie-tip {
+      font-size: 0.8rem;
+      color: rgba(248, 250, 252, 0.65);
+    }
+
+    .pixie-controls {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .pixie-lab.is-lift-off .pixie-balloon {
+      opacity: 1;
+      animation: pixieLift 3s ease-in-out infinite;
+    }
+
+    @media (max-width: 768px) {
+      .saber-lab,
+      .crawl-lab,
+      .map-lab,
+      .surfer-lab,
+      .morph-lab,
+      .constellation-lab,
+      .pixie-lab {
+        padding: 1.5rem;
+      }
+
+      .map-stage {
+        grid-template-columns: 1fr;
+      }
+
+      .surfer-stage,
+      .morph-stage {
+        height: 200px;
+      }
+
+      .pixie-gauge {
+        width: 180px;
+        height: 180px;
+      }
+
+      .pixie-stage-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+
+      33% {
+        border-radius: 60% 40% 45% 55% / 35% 65% 40% 60%;
+      }
+
+      66% {
+        border-radius: 45% 55% 60% 40% / 55% 45% 65% 35%;
+      }
+
+      100% {
+        border-radius: 40% 60% 55% 45% / 60% 40% 60% 40%;
+      }
+    }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+      95% {
+        transform: translate(-50%, -50%) scaleY(0.4);
+      }
+    }
+
+      50% {
+        transform: rotateX(15deg) rotateY(180deg);
+      }
+
+      100% {
+        transform: rotateX(-5deg) rotateY(360deg);
+      }
+    }
+
+      50% {
+        transform: scaleY(1);
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: scaleY(0.4);
+        opacity: 0.2;
+      }
+    }
+
+    @keyframes saberFlicker {
+      0%,
+      100% {
+        box-shadow: 0 0 25px var(--saber-color, #4fc3f7);
+      }
+
+      50% {
+        box-shadow: 0 0 45px var(--saber-color, #4fc3f7);
+      }
+    }
+
+    @keyframes saberHum {
+      0% {
+        transform: translateY(-50%) scaleY(0.9);
+        opacity: 0.35;
+      }
+
+      50% {
+        transform: translateY(-50%) scaleY(1.4);
+        opacity: 0.55;
+      }
+
+      100% {
+        transform: translateY(-50%) scaleY(0.9);
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes starDrift {
+      from {
+        transform: translateY(0);
+      }
+
+      to {
+        transform: translateY(-140px);
+      }
+    }
+
+    @keyframes pixieDrift {
+      0% {
+        transform: translateY(0);
+      }
+
+      100% {
+        transform: translateY(-80px);
+      }
+    }
+
+    @keyframes pixieLift {
+      0% {
+        transform: translate(-50%, 0);
+      }
+
+      50% {
+        transform: translate(-50%, -12px);
+      }
+
+      100% {
+        transform: translate(-50%, 0);
+      }
+    }
+
+    @keyframes pixieScrollPulse {
+      0%,
+      100% {
+        transform: translateY(0) scale(0.9);
+        opacity: 0.4;
+      }
+
+      50% {
+        transform: translateY(-20px) scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    @keyframes crawlScroll {
+      0% {
+        transform: rotateX(32deg) translate3d(0, 140px, -80px);
+      }
+
+      100% {
+        transform: rotateX(32deg) translate3d(0, -680px, -80px);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .saber-blade,
+      .saber-trail,
+      .crawl-text,
+      .crawl-stars,
+      .pixie-particles span,
+      .pixie-balloon,
+      .pixie-scroll-fill span {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+    }
+  </style>
+
+  <script type="module" is:inline>
+    const saberLab = document.querySelector('[data-saber]');
+    const saberToggle = document.getElementById('saber-toggle');
+    const saberRandom = document.getElementById('saber-random');
+    const saberColors = ['#4fc3f7', '#7c3aed', '#f87171', '#facc15', '#22d3ee', '#a855f7'];
+    const saberAudio = {
+      ignite: saberLab?.querySelector('[data-saber-audio="ignite"]'),
+      retract: saberLab?.querySelector('[data-saber-audio="retract"]'),
+      swing: saberLab?.querySelector('[data-saber-audio="swing"]'),
+    };
+
+    const playSaberAudio = (audio) => {
+      if (!(audio instanceof HTMLAudioElement)) return;
+      audio.currentTime = 0;
+      audio.play().catch(() => {});
+    };
+
+    if (saberLab instanceof HTMLElement && saberToggle && saberRandom) {
+      let currentColor = saberLab.style.getPropertyValue('--saber-color') || saberColors[0];
+
+      const setSaberLabel = () => {
+        const active = saberLab.getAttribute('data-active') === 'true';
+        saberToggle.textContent = active ? 'Retract saber' : 'Ignite saber';
+      };
+
+      const applyColor = (color) => {
+        currentColor = color;
+        saberLab.style.setProperty('--saber-color', color);
+      };
+
+      saberToggle.addEventListener('click', () => {
+        const next = saberLab.getAttribute('data-active') !== 'true';
+        saberLab.setAttribute('data-active', next ? 'true' : 'false');
+        playSaberAudio(next ? saberAudio.ignite : saberAudio.retract);
+        setSaberLabel();
+      });
+
+      saberRandom.addEventListener('click', () => {
+        if (saberLab.getAttribute('data-active') !== 'true') return;
+        let nextColor = currentColor;
+        while (nextColor === currentColor) {
+          nextColor = saberColors[Math.floor(Math.random() * saberColors.length)];
+        }
+        applyColor(nextColor);
+        playSaberAudio(saberAudio.swing);
+      });
+
+      setSaberLabel();
+      applyColor(currentColor);
+    }
+
+    const crawlText = document.querySelector('[data-crawl-text]');
+    const crawlReplay = document.getElementById('crawl-replay');
+
+    if (crawlText instanceof HTMLElement && crawlReplay) {
+      const replay = () => {
+        crawlText.classList.remove('is-running');
+        // Force reflow before re-adding class
+        void crawlText.offsetWidth;
+        crawlText.classList.add('is-running');
+      };
+
+      crawlReplay.addEventListener('click', () => replay());
+    }
+
+    const mapLab = document.querySelector('[data-map]');
+    if (mapLab instanceof HTMLElement) {
+      const dial = mapLab.querySelector('[data-map-dial]');
+      const options = mapLab.querySelectorAll('[data-map-option]');
+      const logLabel = mapLab.querySelector('[data-map-log-label]');
+      const logNote = mapLab.querySelector('[data-map-log-note]');
+      const logCoord = mapLab.querySelector('[data-map-log-coord]');
+
+      const setActive = (option) => {
+        options.forEach((btn) => btn.classList.toggle('is-active', btn === option));
+        const angle = Number(option.getAttribute('data-angle') || '0');
+        const label = option.getAttribute('data-label') || '';
+        const note = option.getAttribute('data-note') || '';
+        const coord = option.getAttribute('data-coord') || '';
+        if (dial instanceof HTMLElement) dial.style.setProperty('--map-angle', `${angle}deg`);
+        if (logLabel) logLabel.textContent = label;
+        if (logNote) logNote.textContent = note;
+        if (logCoord) logCoord.textContent = coord;
+      };
+
+      const positionOptions = () => {
+        if (!(dial instanceof HTMLElement)) return;
+        const radius = Math.max(90, dial.offsetWidth / 2 - 50);
+        options.forEach((option) => {
+          const angle = Number(option.getAttribute('data-angle') || '0');
+          const rad = ((angle - 90) * Math.PI) / 180;
+          const x = Math.cos(rad) * radius;
+          const y = Math.sin(rad) * radius;
+          option.style.setProperty('--option-x', `${x}px`);
+          option.style.setProperty('--option-y', `${y}px`);
+          const normalized = ((angle % 360) + 360) % 360;
+          const rotate = normalized > 90 && normalized < 270 ? 180 - angle : -angle;
+          option.style.setProperty('--option-rotate', `${rotate}deg`);
+        });
+      };
+
+      positionOptions();
+
+      if (dial instanceof HTMLElement) {
+        if ('ResizeObserver' in window) {
+          const resizeObserver = new ResizeObserver(() => positionOptions());
+          resizeObserver.observe(dial);
+        } else {
+          window.addEventListener('resize', () => positionOptions());
+        }
+      }
+
+      options.forEach((option) => {
+        option.addEventListener('click', () => setActive(option));
+      });
+
+      const initial = Array.from(options).find((btn) => btn.classList.contains('is-active'));
+      if (initial) setActive(initial);
+    }
+
+    const surferStage = document.querySelector('[data-surfer-stage]');
+    if (surferStage instanceof HTMLElement) {
+      const board = surferStage.querySelector('[data-surfer-board]');
+      let rect = surferStage.getBoundingClientRect();
+      let target = { x: rect.width / 2, y: rect.height / 2 };
+      let current = { ...target };
+
+      const setTarget = (x, y) => {
+        target = {
+          x: Math.min(Math.max(x, 0), rect.width),
+          y: Math.min(Math.max(y, 0), rect.height),
+        };
+        surferStage.style.setProperty('--cursor-x', `${(target.x / rect.width) * 100}%`);
+        surferStage.style.setProperty('--cursor-y', `${(target.y / rect.height) * 100}%`);
+      };
+
+      const handlePointerMove = (event) => {
+        const bounds = surferStage.getBoundingClientRect();
+        rect = bounds;
+        const x = event.clientX - bounds.left;
+        const y = event.clientY - bounds.top;
+        setTarget(x, y);
+      };
+
+      surferStage.addEventListener('pointermove', handlePointerMove);
+      surferStage.addEventListener('pointerleave', () => setTarget(rect.width / 2, rect.height / 2));
+
+      window.addEventListener('resize', () => {
+        rect = surferStage.getBoundingClientRect();
+        setTarget(rect.width / 2, rect.height / 2);
+      });
+
+      const animate = () => {
+        current.x += (target.x - current.x) * 0.08;
+        current.y += (target.y - current.y) * 0.08;
+        const percentX = (current.x / rect.width) * 100;
+        const percentY = (current.y / rect.height) * 100;
+        surferStage.style.setProperty('--surfer-x', `${percentX}%`);
+        surferStage.style.setProperty('--surfer-y', `${percentY}%`);
+        const tilt = ((target.x - rect.width / 2) / (rect.width / 2)) * 18;
+        if (board instanceof HTMLElement) board.style.setProperty('--surfer-tilt', `${tilt.toFixed(2)}deg`);
+        requestAnimationFrame(animate);
+      };
+
+      setTarget(rect.width / 2, rect.height / 2);
+      animate();
+    }
+
+    const morphLab = document.querySelector('[data-morph]');
+    if (morphLab instanceof HTMLElement) {
+      const avatar = morphLab.querySelector('[data-morph-avatar]');
+      const label = morphLab.querySelector('[data-morph-label]');
+      const note = morphLab.querySelector('[data-morph-note]');
+      const stage = morphLab.querySelector('[data-morph-stage]');
+      const options = morphLab.querySelectorAll('[data-morph-option]');
+
+      const states = {
+        stitch: {
+          label: 'Stitch-mode Morph',
+          note: 'Chaotic good energy ideal for spiking prototypes late at night under Montressor stars.',
+          color: '#38bdf8',
+          radius: '58% 42% 60% 40% / 54% 46% 58% 42%',
+        },
+        pascal: {
+          label: 'Pascal-camouflage Morph',
+          note: 'Chameleons through design critiques with stealthy palette swaps and sly feedback.',
+          color: '#34d399',
+          radius: '52% 48% 45% 55% / 60% 40% 65% 35%',
+        },
+        hei: {
+          label: 'Hei Hei optimism Morph',
+          note: 'Cheerful chaos agent reminding the crew to test assumptions (and alerting when bugs cluck).',
+          color: '#f472b6',
+          radius: '64% 36% 55% 45% / 45% 55% 60% 40%',
+        },
+        glow: {
+          label: 'Pixie glow Morph',
+          note: 'Turns retros into lantern festivals with gradients pulled from Pixie Hollow.',
+          color: 'linear-gradient(160deg, #fcd34d, #fb7185)',
+          radius: '50%',
+        },
+      };
+
+      const setState = (key) => {
+        const state = states[key];
+        if (!state || !(avatar instanceof HTMLElement)) return;
+        avatar.style.setProperty('--morph-color', state.color);
+        avatar.style.setProperty('--morph-radius', state.radius);
+        if (label) label.textContent = state.label;
+        if (note) note.textContent = state.note;
+        options.forEach((option) => option.classList.toggle('is-active', option.getAttribute('data-morph-option') === key));
+      };
+
+      options.forEach((option) => {
+        option.addEventListener('click', () => {
+          const key = option.getAttribute('data-morph-option');
+          if (!key) return;
+          setState(key);
+        });
+      });
+
+      if (stage instanceof HTMLElement) {
+        const updatePosition = (x, y) => {
+          stage.style.setProperty('--morph-x', `${x}%`);
+          stage.style.setProperty('--morph-y', `${y}%`);
+        };
+
+        stage.addEventListener('pointermove', (event) => {
+          const bounds = stage.getBoundingClientRect();
+          const x = ((event.clientX - bounds.left) / bounds.width) * 100;
+          const y = ((event.clientY - bounds.top) / bounds.height) * 100;
+          updatePosition(x, y);
+        });
+
+        updatePosition(50, 50);
+      }
+
+      setState('stitch');
+    }
+
+    const constellationItems = document.querySelectorAll('[data-constellation-item]');
+    if (constellationItems.length) {
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          { threshold: 0.3 }
+        );
+
+        constellationItems.forEach((item) => observer.observe(item));
+      } else {
+        constellationItems.forEach((item) => item.classList.add('is-visible'));
+      }
+    }
+
+    const pixieLab = document.querySelector('[data-gauge]');
+    if (pixieLab instanceof HTMLElement) {
+      const meter = pixieLab.querySelector('[data-gauge-meter]');
+      const percent = pixieLab.querySelector('[data-gauge-percent]');
+      const charge = pixieLab.querySelector('[data-gauge-charge]');
+      const reset = pixieLab.querySelector('[data-gauge-reset]');
+      const scrollArea = pixieLab.querySelector('[data-gauge-scroll]');
+      const particles = pixieLab.querySelectorAll('[data-gauge-particle]');
+      let manualProgress = 0;
+
+      particles.forEach((particle) => {
+        if (!(particle instanceof HTMLElement)) return;
+        const left = 10 + Math.random() * 80;
+        const bottom = 10 + Math.random() * 140;
+        particle.style.left = `${left}%`;
+        particle.style.bottom = `${bottom}px`;
+        particle.style.animationDelay = `${Math.random() * 2}s`;
+      });
+
+      const scrollRatio = () => {
+        if (!(scrollArea instanceof HTMLElement)) return 0;
+        const max = scrollArea.scrollHeight - scrollArea.clientHeight;
+        if (max <= 0) return 0;
+        return scrollArea.scrollTop / max;
+      };
+
+      const setProgress = (value) => {
+        const progress = Math.min(1, Math.max(0, value));
+        meter?.style.setProperty('--progress-angle', `${progress * 360}deg`);
+        if (percent) percent.textContent = `${Math.round(progress * 100)}%`;
+        pixieLab.classList.toggle('is-lift-off', progress >= 0.99);
+        particles.forEach((particle, index) => {
+          const threshold = (index + 1) / particles.length;
+          particle.classList.toggle('is-active', progress >= threshold * 0.9);
+        });
+      };
+
+      const refresh = () => {
+        const overall = Math.min(1, scrollRatio() + manualProgress);
+        setProgress(overall);
+      };
+
+      charge?.addEventListener('click', () => {
+        manualProgress = Math.min(1, manualProgress + 0.18);
+        refresh();
+      });
+
+      reset?.addEventListener('click', () => {
+        manualProgress = 0;
+        if (scrollArea instanceof HTMLElement) {
+          scrollArea.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        refresh();
+      });
+
+      scrollArea?.addEventListener('scroll', () => refresh());
+      window.addEventListener('resize', () => refresh());
+      refresh();
+    }
+  </script>
+</BaseLayout>
