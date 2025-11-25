@@ -7,7 +7,7 @@ interface Props extends Project {
   animated?: boolean;
 }
 
-const { title, description, tags, github, demo, delay = 0, animated = true } = Astro.props;
+const { title, description, tags, github, website, delay = 0, animated = true } = Astro.props;
 ---
 <article
   class="frosted-panel hover-card relative flex h-full flex-col border border-white/5 p-6"
@@ -32,23 +32,29 @@ const { title, description, tags, github, demo, delay = 0, animated = true } = A
         <TagChip label={tag} />
       ))}
     </div>
-    <div class="mt-6 flex flex-wrap gap-3 text-sm font-medium">
-      <a
-        class="btn-secondary"
-        href={github}
-        target="_blank"
-        rel="noreferrer"
-      >
-        GitHub
-      </a>
-      <a
-        class="btn-primary hover:shadow-glow"
-        href={demo}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Live Demo
-      </a>
-    </div>
+    {(github || website) && (
+      <div class="mt-6 flex flex-wrap gap-3 text-sm font-medium">
+        {github && (
+          <a
+            class="btn-secondary"
+            href={github}
+            target="_blank"
+            rel="noreferrer"
+          >
+            GitHub
+          </a>
+        )}
+        {website && (
+          <a
+            class="btn-primary hover:shadow-glow"
+            href={website}
+            target="_blank"
+            rel="noreferrer"
+          >
+            Website
+          </a>
+        )}
+      </div>
+    )}
   </div>
 </article>

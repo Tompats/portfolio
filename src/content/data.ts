@@ -1,83 +1,73 @@
-export type ProjectCategory = 'Full-Stack' | 'Mobile' | 'Web' | 'Backend';
+export type ProjectCategory = 'Full-Stack' | 'Mobile' | 'Web' | 'Backend' | 'Data Science' | 'Research';
 
 export type Project = {
   title: string;
   description: string;
   tags: string[];
   category: ProjectCategory;
-  github: string;
-  demo: string;
+  github?: string;
+  website?: string;
   featured?: boolean;
 };
 
 export const projects: Project[] = [
   {
-    title: 'LifePulse Navigator',
+    title: 'FOOG – Mountaineering Club of Giannitsa',
     description:
-      'Digital health companion that syncs wearables, React Native front-end, and a Node.js/GraphQL API to surface actionable wellness nudges.',
-    tags: ['React Native', 'Node.js', 'GraphQL', 'AWS'],
+      'Static website built with Astro, TypeScript, and Tailwind CSS. Inspired by a Mountain Pine color palette and optimized for speed and accessibility.',
+    tags: ['Astro 5', 'TypeScript', 'Tailwind CSS', 'Formspree'],
+    category: 'Web',
+    github: 'https://github.com/tompats/foog',
+    website: 'https://foog.gr',
+    featured: true,
+  },
+  {
+    title: 'LifePulse',
+    description:
+      'Blood-donation mobile platform built with React Native. Sends targeted alerts based on blood type and location. Backend powered by Fastify, PostgreSQL, and AWS.',
+    tags: ['React Native', 'Fastify', 'Expo', 'AWS', 'PostgreSQL'],
     category: 'Mobile',
     github: 'https://github.com/tompats/lifepulse-navigator',
-    demo: 'https://lifepulse.app/demo',
+    website: 'https://lifepulse.app/demo',
     featured: true,
   },
   {
-    title: 'Aurora Trail Guide',
+    title: 'Alphatrots Signalerings App',
     description:
-      'Progressive web app mapping alpine routes with offline vector tiles, ski forecasts, and AI safety summaries built with Astro, Vue, and serverless functions.',
-    tags: ['Astro', 'Vue', 'Mapbox', 'Serverless'],
-    category: 'Web',
-    github: 'https://github.com/tompats/aurora-trail-guide',
-    demo: 'https://aurora-trail-guide.app',
-    featured: true,
-  },
-  {
-    title: 'SummitOps Control Center',
-    description:
-      'Operational dashboard for Code Seed teams featuring real-time job queues, audit logs, and automation controls using React, Zustand, and FastAPI.',
-    tags: ['React', 'FastAPI', 'PostgreSQL'],
-    category: 'Full-Stack',
-    github: 'https://github.com/tompats/summitops-control',
-    demo: 'https://summitops-control.dev',
-    featured: true,
-  },
-  {
-    title: 'Snowpack AI Forecaster',
-    description:
-      'Python + PyTorch pipeline predicting snowpack stability by merging sensor feeds with NOAA datasets, streaming alerts to ski patrol dashboards.',
-    tags: ['Python', 'PyTorch', 'Data Science'],
-    category: 'Backend',
-    github: 'https://github.com/tompats/snowpack-ai',
-    demo: 'https://snowpack-ai.dev',
-  },
-  {
-    title: 'Nebula Deploy Kit',
-    description:
-      'CLI toolkit automating provisioning for multi-cloud React Native deployments with Node.js, Terraform templates, and typed config schemas.',
-    tags: ['Node.js', 'Terraform', 'TypeScript'],
-    category: 'Backend',
-    github: 'https://github.com/tompats/nebula-deploy-kit',
-    demo: 'https://nebula-kit.dev',
-  },
-  {
-    title: 'Glacier Coach',
-    description:
-      'Personalized ski training companion blending Vue, WebGL motion overlays, and Supabase analytics to mirror in-person lessons remotely.',
-    tags: ['Vue', 'Supabase', 'WebGL'],
-    category: 'Web',
-    github: 'https://github.com/tompats/glacier-coach',
-    demo: 'https://glacier-coach.dev',
-  },
-  {
-    title: 'Vector Drift Mobile',
-    description:
-      'Cross-platform React Native app streaming BLE sensor data for KINVENT devices with offline-first caching and TypeScript domain models.',
-    tags: ['React Native', 'BLE', 'TypeScript'],
+      'React Native app for care assistants to manage tasks, submit welfare reports, track work hours, and send emergency alerts through a REST API backend.',
+    tags: ['React Native', 'TypeScript', 'Expo', 'REST API'],
     category: 'Mobile',
-    github: 'https://github.com/tompats/vector-drift',
-    demo: 'https://vector-drift.app',
+    github: '',
+    website: 'https://play.google.com/store/apps/details?id=com.alphatrots.signaleringsapp',
+    featured: true,
+  },
+  {
+    title: 'Kinvent Physio – Pose Detection Module',
+    description:
+      'Machine-learning module for real-time pose detection in physiotherapy exercises. Provides instant feedback and automatic performance tracking.',
+    tags: ['Machine Learning', 'Pose Detection', 'TensorFlow.js', 'React Native', 'Computer Vision'],
+    category: 'Mobile',
+    featured: false,
+  },
+  {
+    title: 'Recommendation System',
+    description:
+      'Movie recommendation engine in Python implementing user-based, item-based, and hybrid collaborative filtering using MovieLens-style datasets.',
+    tags: ['Python', 'Recommender Systems', 'Collaborative Filtering', 'MovieLens'],
+    category: 'Data Science',
+    github: 'https://github.com/Tompats/Recommendation-System',
+    featured: false,
+  },
+  {
+    title: 'Link Prediction in Social Networks (Thesis)',
+    description:
+      'Research project on predicting future user connections using graph-based features, centrality metrics, and Python-based ML techniques.',
+    tags: ['Python', 'Graph Theory', 'Network Analysis', 'Link Prediction', 'Machine Learning'],
+    category: 'Research',
+    featured: false,
   },
 ];
+
 
 export const techStack = [
   'React Native',
